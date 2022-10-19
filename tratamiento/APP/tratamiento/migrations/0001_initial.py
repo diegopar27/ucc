@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name_patient', models.CharField(max_length=50, verbose_name='nombre de tratamiento')),
                 ('start_date', models.DateField(null=True)),
-                ('drug_name', models.CharField(max_length=40, verbose_name='nombre del medicamento')),
+                ('drug_name', models.CharField(max_length=40, verbose_name='nombre del medicine')),
                 ('amount', models.IntegerField(verbose_name='cantidad')),
                 ('location', models.CharField(max_length=30, verbose_name='ubicacion')),
                 ('eps', models.CharField(max_length=40, verbose_name='eps')),

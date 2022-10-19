@@ -5,15 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20ca867d-acfd-4ab2-9194-1a0431ff1f42" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/tratamiento/APP/exams/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tratamiento/APP/medicine/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tratamiento/APP/medicine/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tratamiento/APP/examenes/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tratamiento/APP/exams/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tratamiento/APP/examenes/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/tratamiento/APP/exams/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tratamiento/APP/examenes/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/tratamiento/APP/exams/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tratamiento/APP/examenes/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tratamiento/APP/exams/migrations/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tratamiento/APP/examenes/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tratamiento/APP/examenes/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tratamiento/APP/exams/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tratamiento/APP/examenes/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/tratamiento/APP/exams/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tratamiento/APP/medicamento/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tratamiento/APP/medicine/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tratamiento/APP/medicamento/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tratamiento/APP/medicamento/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/tratamiento/APP/medicine/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tratamiento/APP/medicamento/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/tratamiento/APP/medicine/migrations/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tratamiento/APP/medicamento/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tratamiento/APP/medicamento/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tratamiento/APP/medicine/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tratamiento/APP/medicamento/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/tratamiento/APP/medicine/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tratamiento/APP/tratamiento/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/tratamiento/APP/tratamiento/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tratamiento/APP/tratamiento/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/tratamiento/APP/tratamiento/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tratamiento/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/tratamiento/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tratamiento/tratamiento/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/tratamiento/tratamiento/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,7 +60,7 @@
       <updated>1666136623463</updated>
       <workItem from="1666136624829" duration="2309000" />
       <workItem from="1666193511416" duration="1736000" />
-      <workItem from="1666210621629" duration="893000" />
+      <workItem from="1666210621629" duration="1934000" />
     </task>
     <servers />
   </component>
