@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'APP.pathology',
     'APP.exams',
     'APP.medicine',
+    'APP.pacientexfamiliar',
 ]
 
 MIDDLEWARE = [
