@@ -5,3 +5,5 @@ from APP.pacientexfamiliar.models import *
 admin.site.register(Paciente)
 admin.site.register(Sueños)
 admin.site.register(Paciente_x_sueños)
+admin.site.register(Estado)
+admin.site.register(Paciente_x_estado)

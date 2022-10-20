@@ -23,6 +23,9 @@ class Paciente(models.Model):
     nivel_educativo = models.CharField(max_length=45)
     create_at = models.DateField(auto_now_add=True)
 
+    def __str__(self):
+        return f'{self.apellidos}  {self.nombres}'
+
 
 class Sueños(models.Model):
     tipo = models.CharField(max_length=45)
@@ -30,11 +33,46 @@ class Sueños(models.Model):
     descripcion = models.TextField()
     create_at = models.DateField(auto_now_add=True)
 
+    def __str__(self):
+        return f'{self.nombre}'
+
 
 class Paciente_x_sueños(models.Model):
     id_paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
     id_sueño = models.ManyToManyField(Sueños)
     create_at = models.DateField(auto_now_add=True)
+
+    def obtener_sueños(self):
+        sueños = str([id_sueño for id_sueño in self.id_sueño.all().values_list(
+            'nombre', flat=True)]).replace("[", "").replace("]", "").replace("'", "")
+        return sueños
+
+    def __str__(self):
+        return f'el sueño de {self.id_paciente} es  {self.obtener_sueños()}'
+
+
+class Estado(models.Model):
+    nombre = models.CharField(null=False, max_length=50)
+    descripcion = models.TextField()
+    create_at = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.nombre}'
+
+
+class Paciente_x_estado(models.Model):
+    id_paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
+    id_estado = models.ForeignKey(Estado, on_delete=models.CASCADE)
+    create_at = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f'el estado del paciente {self.id_paciente} es {self.id_estado}'
+
+
+
+
+
+
 
 
 
