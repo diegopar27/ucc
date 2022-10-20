@@ -68,6 +68,28 @@ class Paciente_x_estado(models.Model):
     def __str__(self):
         return f'el estado del paciente {self.id_paciente} es {self.id_estado}'
 
+class Eps(models.Model):
+    nombre = models.CharField(max_length=45)
+    nit = models.BigIntegerField(max_length=10)
+    numero_telefonico = models.BigIntegerField(max_length=10)
+    correo_electronico = models.CharField(max_length=50)
+    create_at = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.nombre}'
+
+class Paciente_x_eps(models.Model):
+    id_paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
+    id_eps = models.ForeignKey(Eps, on_delete=models.CASCADE)
+    create_at = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f'el paciente {self.id_paciente} tiene eps {self.id_eps}'
+        
+
+
+    
+
 
 
 
