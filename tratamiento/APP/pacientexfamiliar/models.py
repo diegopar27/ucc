@@ -5,7 +5,7 @@ class Paciente(models.Model):
     apellidos = models.CharField(max_length=45)
     edad = models.PositiveIntegerField(default=0)
     fecha_nacimiento = models.DateField()
-    nui = models.BigIntegerField(max_length=10)
+    nui = models.BigIntegerField()
     fecha_inicio_tratamiento = models.DateField()
     Seguro_funebre = models.BooleanField(default=False)
     nucleo_familiar = models.CharField(max_length=45)
@@ -16,9 +16,9 @@ class Paciente(models.Model):
     ]
     sexo = models.CharField(max_length=1, choices=sexos, default='F')
     fecha_ingreso = models.DateField()
-    numero_telefonico = models.BigIntegerField(max_length=10)
+    numero_telefonico = models.BigIntegerField()
     correo_electronico = models.CharField(max_length=45)
-    historia_clinica = models.TextField(null=True, blank=True)
+    historia_clinica = models.TextField(null=False)
     direccion_residencia = models.CharField(max_length=45)
     nivel_educativo = models.CharField(max_length=45)
     create_at = models.DateField(auto_now_add=True)
@@ -70,8 +70,8 @@ class Paciente_x_estado(models.Model):
 
 class Eps(models.Model):
     nombre = models.CharField(max_length=45)
-    nit = models.BigIntegerField(max_length=10)
-    numero_telefonico = models.BigIntegerField(max_length=10)
+    nit = models.BigIntegerField()
+    numero_telefonico = models.BigIntegerField()
     correo_electronico = models.CharField(max_length=50)
     create_at = models.DateField(auto_now_add=True)
 
@@ -85,12 +85,59 @@ class Paciente_x_eps(models.Model):
 
     def __str__(self):
         return f'el paciente {self.id_paciente} tiene eps {self.id_eps}'
-        
+
+class Familiar(models.Model):
+    nombres = models.CharField(max_length=45)
+    apellidos = models.CharField(max_length=45)
+    edad = models.PositiveIntegerField(default=0)
+    fecha_nacimiento = models.DateField()
+    nui = models.BigIntegerField()
+    estadocivil = [
+        ('S', 'Soltero'),
+        ('C', 'Casado'),
+        ('V', 'Viudo'),
+        ('D', 'Divorciado')
+    ]
+    estado_civil = models.CharField(max_length=1, choices=estadocivil, default='S')
+    sexos = [
+        ('F', 'Femenino'),
+        ('M', 'Masculino'),
+        ('O', 'otro')
+    ]
+    sexo = models.CharField(max_length=1, choices=sexos, default='F')
+    numero_telefonico = models.BigIntegerField()
+    correo_electronico = models.CharField(max_length=45)
+    direccion_residencia = models.CharField(max_length=45)
+    nivel_educativo = models.CharField(max_length=45)
+    Antecedentes_oncologicos = models.TextField()
+    ocupacion = models.CharField(max_length=50)
+    competencias = models.TextField()
+    create_at = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.apellidos}  {self.nombres}'
 
 
-    
 
+class Paciente_x_familiar(models.Model):
+    id_paciente = models.ManyToManyField(Paciente)
+    id_familiar = models.ManyToManyField(Familiar)
+    parentesco = models.CharField(max_length=50)
+    cuidador = models.BooleanField(default=False)
+    create_at = models.DateField(auto_now_add=True)
 
+    def obtener_pacientes(self):
+        pacientes = str([id_paciente for id_paciente in self.id_paciente.all().values_list(
+            'nombres', flat=True)]).replace("[", "").replace("]", "").replace("'", "")
+        return pacientes
+
+    def obtener_familiar(self):
+        familiarr = str([id_familiar for id_familiar in self.id_familiar.all().values_list(
+            'nombres', flat=True)]).replace("[", "").replace("]", "").replace("'", "")
+        return familiarr
+
+    def __str__(self):
+        return f'el paciente {self.obtener_pacientes()} tiene los siguientes familiares: {self.obtener_familiar()}'
 
 
 
