@@ -39,3 +39,19 @@ class Paciente_x_padrino(models.Model):
 
     def __str__(self):
          return f'el padrino de {self.id_paciente} es  {self.obtener_padrino()}'
+
+class donacion_padrino(models.Model):
+    metodo_donacion = models.CharField(max_length=50, blank=False,null=True, verbose_name='metodo de donacion')
+    tipo_donacion = models.CharField(max_length=50, blank=False,null=True, verbose_name='tipo de donacion')
+    create_at = models.DateField(auto_now_add=True)
+    
+    def __str__(self):
+        return f'{self.metodo_donacion}'
+
+class Paciente_x_donacion(models.Model):
+    id_paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
+    id_donacion = models.ManyToManyField(donacion_padrino)
+    create_at = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f'le donaron {self.id_donacion} a {self.id_paciente} '

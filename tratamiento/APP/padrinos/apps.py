@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 class PadrinosConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'padrinos'
+    name = 'APP.padrinos'

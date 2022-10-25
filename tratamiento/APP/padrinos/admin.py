@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from tratamiento.APP.padrinos.models import padrinos
+
+@admi.register(padrinos)
+class PadrinosAdmin(admin.ModelAdmin):
+ pass
