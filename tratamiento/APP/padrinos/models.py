@@ -1,5 +1,6 @@
 from enum import auto
 from django.db import models
+from APP.pacientexfamiliar.models import Paciente
 
 # Create your moclasdels here.
 class padrinos (models.Model):
