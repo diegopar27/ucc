@@ -1,5 +1,8 @@
+from tabnanny import verbose
 from django.db import models
-
+from pacientexfamiliar.models import Paciente
+from tratamiento.APP.exams.models import Exams
+from tratamiento.APP.medicine.models import Medicine
 # Create your models here.
 
 
@@ -14,3 +17,9 @@ class Pathology(models.Model):
     def __str__(self):
         return self.pathology_type
 
+class Patient_x_Pathology(models.Model):
+    id_patient = models.ForeignKey(Paciente, on_delete=models.CASCADE)
+    id_pathology = models.ForeignKey(Pathology, on_delete=models.CASCADE)
+    id_exam = models.ForeignKey(Exams, on_delete=models.CASCADE)
+    id_medicine = models.ForeignKey(Medicine, on_delete=models.CASCADE)
+    date = models.DateField(null=True, verbose='Fecha')
