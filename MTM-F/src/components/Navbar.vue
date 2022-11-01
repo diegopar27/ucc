@@ -19,7 +19,7 @@
           </v-list-item>
         </v-list>
       </v-menu>
-      <v-btn text>
+      <v-btn text @click="salir()">
         <span>Salir</span>
         <v-icon right>exit_to_app</v-icon>
       </v-btn>
@@ -43,13 +43,21 @@ export default {
     links: [
       { text: "Inicio", route: "/dashboard" },
       { text: "Pacientes", route: "/paciente" },
-      { text: "Historias clínicas", route: "/HistoriaClinica" },
-      { text: "Vacunas", route: "/carnetVacunas" },
-      { text: "Crecimiento y desarrollo", route: "/crecimientoDesarrollo" },
+      { text: "Examenes", route: "/examenes" },
+      { text: "Medicinas", route: "/medicinas" },
+      { text: "Patologias", route: "/patologias" },
       { text: "Padrinos", route: "/padrinos" },
       { text: "tratamientos", route: "/tratamientos" },
+      // { text: "Historias clínicas", route: "/HistoriaClinica" },
+      // { text: "Vacunas", route: "/carnetVacunas" },
+      // { text: "Crecimiento y desarrollo", route: "/crecimientoDesarrollo" },
     ],
   }),
+  methods: {
+    salir() {
+      this.$router.push("/Login");
+    },
+  },
   components: {
     Popup,
   },
