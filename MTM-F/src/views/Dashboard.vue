@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div style="background-color: #cadaff">
     <v-container>
-      <v-card>
+      <v-card >
         <v-footer>
           <h1 class="primary--text">Trabajando por un mejor futuro</h1>
         </v-footer>

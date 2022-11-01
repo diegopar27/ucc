@@ -2,7 +2,7 @@
   <v-app>
     <Navbar v-if="$route.path != '/Login'"> </Navbar>
     <v-content class="ma-4" style="background-color: #cadaff">
-      <router-view></router-view>
+      <router-view ></router-view>
     </v-content>
     <Footer />
   </v-app>

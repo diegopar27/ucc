@@ -60,6 +60,13 @@ const routes = [
     }
   },
   {
+    path: '/padrinos',
+    name: 'padrinos',
+    component: function () {
+      return import('../views/Padrinos.vue')
+    }
+  },
+  {
     path: '/HomeAdmin',
     name: 'HomeAdmin',
     component: function () {
