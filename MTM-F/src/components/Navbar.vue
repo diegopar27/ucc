@@ -3,7 +3,7 @@
     <v-app-bar color="primary" dark app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="text-uppercase">
-        <span class="font-weight-light">SLH</span>
+        <span class="font-weight-light">Fundación</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-menu offset-y>
