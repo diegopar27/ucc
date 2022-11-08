@@ -14,7 +14,7 @@ class Paciente(models.Model):
         ('M', 'Masculino'),
         ('O', 'otro')
     ]
-    sexo = models.CharField(max_length=1, choices=sexos, default='F')
+    sexo = models.CharField(max_length=1=, choices=sexos, default='F')
     fecha_ingreso = models.DateField()
     numero_telefonico = models.BigIntegerField()
     correo_electronico = models.CharField(max_length=45)
