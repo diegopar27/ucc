@@ -11,7 +11,7 @@
                     <v-card-text class="mt-12">
                       <h1 class="text-center display-2" style="color: #03a9f4">Iniciar sesión</h1>
                       <br />
-                      <h4 class="text-center mt-4">Brigadas de salud</h4>
+                      <h4 class="text-center mt-4">Mujeres trabajando por el meta</h4>
                       <v-form>
                         <v-text-field label="Email" name="Email" prepend-icon="email" type="text" color="#03A9F4" v-model="usuario" />
 
