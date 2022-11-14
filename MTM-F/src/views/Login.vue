@@ -46,9 +46,6 @@ export default {
     return {
       value1: "",
       valid: false,
-      value2: "",
-      colorx: "#c72a75",
-      colorx2: "#5252e8",
       usuario: "",
       contraseña: "",
     };
