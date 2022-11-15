@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app style="background-color: #cadaff">
     <Navbar v-if="$route.path != '/Login'"> </Navbar>
     <v-content>
       <router-view style="background-color: #cadaff"> </router-view>
