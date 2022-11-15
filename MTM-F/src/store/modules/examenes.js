@@ -30,12 +30,13 @@ export default {
         console.error(error);
       }
     },
-    async _putExamen({ commit }, { id }) {
+    async _putExamen({ commit }, { id, data }) {
       try {
         const RES = await postData({
-          url: `examExams/${id}`,
+          url: `examExams/${id}/`,
           header: {},
           method: "PUT",
+          data,
         });
         console.log("res", RES);
         return RES;
