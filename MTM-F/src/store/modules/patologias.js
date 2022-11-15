@@ -17,10 +17,10 @@ export default {
         console.error(error);
       }
     },
-    async _getPatologia({ commit }, { id }) {
+    async _getPatologias({ commit }) {
       try {
         const RES = await postData({
-          url: `pathologyPathology/${id}`,
+          url: `pathologyPathology/`,
           header: {},
           method: "GET",
         });

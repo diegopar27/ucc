@@ -1,140 +1,114 @@
 <template>
-  <div>
-    <div>
-      <div>
-        <h1>Patologias</h1>
-        <div cols="12" md="4" lg="3">
-          <v-btn color="success" dark large> Crear patologia </v-btn>
-        </div>
-      </div>
-      <div>
-        <v-text-field cols="12" md="4" lg="3" v-model="search" label="Consultar por numero ID" class="purple-input" />
+  <v-container fluid class="fill-height">
+    <v-row justify="center">
+      <v-card shaped width="900">
+        <v-footer color="primary">
+          <h1 class="white--text">Patologías</h1>
+        </v-footer>
+        <v-row>
+          <v-col cols="4">
+            <v-text-field class="pt-4 pl-4" outlined dense v-model="search" label="Buscar" />
+          </v-col>
+          <v-col cols="8" class="text-end">
+            <v-btn class="mt-4 mr-4" color="success" dark large @click="patologiaop.estado = true"> Crear patología </v-btn>
+          </v-col>
+        </v-row>
+
         <template>
-          <v-data-table :search="search" :headers="headers" :items="pacientes" item-key="id" :items-per-page="5" class="elevation-1">
+          <v-data-table :search="search" :headers="headers" :items="patologias" item-key="id" :items-per-page="5" class="elevation-1">
             <template v-slot:[`item.actions`]="{ item }">
-              <v-icon small color="primary" class="mr-2" @click="verPaciente(item)"> mdi-book </v-icon>
-              <v-icon small color="warning" class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
-              <v-icon small color="error" @click="deleteItem(item)"> mdi-delete </v-icon>
+              <v-icon small color="primary" class="mr-2" @click="verPatologia(item)"> mdi-book </v-icon>
+              <v-icon small color="warning" class="mr-2" @click="editPatologia(item)"> mdi-pencil </v-icon>
             </template>
           </v-data-table>
         </template>
-      </div>
-    </div>
+      </v-card>
+    </v-row>
     <PATOLOGIA :patologia="patologia" v-if="patologia.estado"></PATOLOGIA>
-  </div>
+    <PATOLOGIAOP :patologia="patologiaop" v-if="patologiaop.estado"></PATOLOGIAOP>
+  </v-container>
 </template>
 <script>
-import popapPaciente from "../components/pacientes/CardPacientes.vue";
-import axios from "axios";
-import { Global } from "../global";
+import popapPatologia from "../components/patologias/CardPatologias.vue";
+import OpcionPatologia from "../components/patologias/OpcionPatologia.vue";
 import { mapActions } from "vuex";
 
 export default {
   components: {
-    PATOLOGIA: popapPaciente,
+    PATOLOGIA: popapPatologia,
+    PATOLOGIAOP: OpcionPatologia,
   },
   data: () => ({
     search: "",
     headers: [
       {
-        text: "Tipo patologia",
+        text: "Tipo de patologia",
         align: "center",
         sortable: false,
-        value: "nombre",
+        value: "pathology_type",
       },
       {
         text: "Nombre",
         align: "center",
         sortable: false,
-        value: "apellido",
+        value: "name",
       },
       {
         text: "Tiempo",
         align: "center",
         sortable: false,
-        value: "tipo_documento",
+        value: "time_pathology",
       },
       {
-        text: "Condición",
+        text: "Condoción",
         align: "center",
         sortable: false,
-        value: "cedula",
+        value: "condition",
       },
       {
         text: "Ciclo",
         align: "center",
         sortable: false,
-        value: "cedula",
+        value: "cycle",
       },
+
       { text: "Actions", value: "actions", sortable: false },
     ],
     patologia: {
       estado: false,
-      // nombre: "",
-      // apellidos: "",
-      // tipo_documento: "",
-      // cedula: "",
-      // edad: "",
-      // correo: "",
-      // eps: "",
-      // genero,
     },
-    pacientes: [
-      {
-        nombre: "Cristian David",
-        apellido: "Hernandez Suarez",
-        tipo_documento: "C.C",
-        cedula: "1006689061",
-        edad: "21",
-        correo: "Cristian David",
-        eps: "Cajacopi",
-        genero: "Hombre",
-      },
-      {
-        nombre: "Cristian David",
-        apellido: "Hernandez Suarez",
-        tipo_documento: "C.C",
-        cedula: "1006689061",
-        edad: "21",
-        correo: "Cristian David",
-        eps: "Cajacopi",
-        genero: "Hombre",
-      },
-      {
-        nombre: "Cristian David",
-        apellido: "Hernandez Suarez",
-        tipo_documento: "C.C",
-        cedula: "1006689061",
-        edad: "21",
-        correo: "Cristian David",
-        eps: "Cajacopi",
-        genero: "Hombre",
-      },
-      {
-        nombre: "Cristian David",
-        apellido: "Hernandez Suarez",
-        tipo_documento: "C.C",
-        cedula: "1006689061",
-        edad: "21",
-        correo: "Cristian@18gmail.com",
-        eps: "Cajacopi",
-        genero: "Hombre",
-      },
-    ],
+    patologiaop: {
+      estado: false,
+    },
+    patologias: [],
   }),
-  async mounted() {},
+  async mounted() {
+    this.patologias = await this._getPatologias();
+    console.log(this.patologias);
+  },
   methods: {
-    ...mapActions({}),
-    verPaciente(item) {
-      this.paciente.estado = true;
-      this.paciente.nombre = item.nombre;
-      this.paciente.apellidos = item.apellido;
-      this.paciente.tipo_documento = item.tipo_documento;
-      this.paciente.cedula = item.cedula;
-      this.paciente.edad = item.edad;
-      this.paciente.correo = item.correo;
-      this.paciente.eps = item.eps;
-      this.paciente.genero = item.genero;
+    ...mapActions({
+      _getPatologias: "patologias/_getPatologias",
+    }),
+    editPatologia(item) {
+      this.patologiaop.pathology_type = item.pathology_type;
+      this.patologiaop.name = item.name;
+      this.patologiaop.time_pathology = item.time_pathology;
+      this.patologiaop.condition = item.condition;
+      this.patologiaop.cycle = item.cycle;
+      this.patologiaop.id = item.id;
+
+      this.patologiaop.estado = true;
+      this.patologiaop.editar = true;
+    },
+    verPatologia(item) {
+      this.patologia.tipo_patologia = item.pathology_type;
+      this.patologia.nombre = item.name;
+      this.patologia.tiempo = item.time_pathology;
+      this.patologia.condicion = item.condition;
+      this.patologia.ciclo = item.cycle;
+
+      this.patologia.estado = true;
     },
   },
 };

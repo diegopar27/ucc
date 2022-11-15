@@ -44,6 +44,21 @@ const routes = [
       return import("../views/Padrinos.vue");
     },
   },
+  {
+    path: "/patologias",
+    name: "patologias",
+    component: function () {
+      return import("../views/Patologias.vue");
+    },
+  },
+
+  {
+    path: "/examenes",
+    name: "examenes",
+    component: function () {
+      return import("../views/Examenes.vue");
+    },
+  },
 ];
 
 const router = new VueRouter({
