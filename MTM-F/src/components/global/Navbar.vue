@@ -9,7 +9,7 @@
       <v-menu offset-y>
         <template v-slot:activator="{ on }">
           <v-btn text v-on="on">
-            <v-icon left>expand_more</v-icon>
+            <v-icon left>mdi-reorder-horizontal</v-icon>
             <span>Menu</span>
           </v-btn>
         </template>
@@ -21,7 +21,7 @@
       </v-menu>
       <v-btn text @click="salir()">
         <span>Salir</span>
-        <v-icon right>exit_to_app</v-icon>
+        <v-icon right>mdi-exit-run</v-icon>
       </v-btn>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" dark app class="primary">

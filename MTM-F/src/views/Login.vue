@@ -10,18 +10,18 @@
               <v-card-text class="mt-12">
                 <v-row justify="center">
                   <v-col cols="8">
-                    <v-text-field label="Email" required solo prepend-icon="email" type="email" color="primary" v-model="usuario" />
+                    <v-text-field label="Email" required solo prepend-icon="mdi-account" type="email" color="primary" v-model="usuario" />
                   </v-col>
                   <v-col cols="8">
                     <v-text-field
-                      required
+                      prepend-icon="mdi-account-lock-open-outline"
                       v-model="contraseña"
-                      prepend-icon="lock"
                       label="Password"
                       name="password"
                       type="password"
                       color="primary"
                       id="password"
+                      required
                       solo
                     />
                   </v-col>

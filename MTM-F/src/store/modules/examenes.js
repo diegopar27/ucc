@@ -4,10 +4,10 @@ export default {
   namespaced: true,
   state: {},
   actions: {
-    async _getPadrinos({ commit }) {
+    async _getExamenes({ commit }) {
       try {
         const RES = await postData({
-          url: `godfathergodfather/`,
+          url: `examExams/`,
           header: {},
           method: "GET",
         });
@@ -17,10 +17,10 @@ export default {
         console.error(error);
       }
     },
-    async _getPadrino({ commit }, { id }) {
+    async _getExamen({ commit }, { id }) {
       try {
         const RES = await postData({
-          url: `godfathergodfather/${id}`,
+          url: `examExams/${id}`,
           header: {},
           method: "GET",
         });
@@ -30,10 +30,10 @@ export default {
         console.error(error);
       }
     },
-    async _putPadrino({ commit }, { id }) {
+    async _putExamen({ commit }, { id }) {
       try {
         const RES = await postData({
-          url: `godfathergodfather/${id}`,
+          url: `examExams/${id}`,
           header: {},
           method: "PUT",
         });
@@ -43,10 +43,10 @@ export default {
         console.error(error);
       }
     },
-    async _addPadrino({ commit }, { data }) {
+    async _addExamen({ commit }, { data }) {
       try {
         const RES = await postData({
-          url: `godfathergodfather/`,
+          url: `examExams/`,
           header: {},
           data,
           method: "POST",

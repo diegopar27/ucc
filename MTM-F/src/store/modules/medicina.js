@@ -4,10 +4,10 @@ export default {
   namespaced: true,
   state: {},
   actions: {
-    async _getPadrinos({ commit }) {
+    async _getMedicinas({ commit }) {
       try {
         const RES = await postData({
-          url: `godfathergodfather/`,
+          url: `MedicineMedicine/`,
           header: {},
           method: "GET",
         });
@@ -17,10 +17,10 @@ export default {
         console.error(error);
       }
     },
-    async _getPadrino({ commit }, { id }) {
+    async _getMedicina({ commit }, { id }) {
       try {
         const RES = await postData({
-          url: `godfathergodfather/${id}`,
+          url: `MedicineMedicine/${id}`,
           header: {},
           method: "GET",
         });
@@ -30,10 +30,10 @@ export default {
         console.error(error);
       }
     },
-    async _putPadrino({ commit }, { id }) {
+    async _putMedicina({ commit }, { id }) {
       try {
         const RES = await postData({
-          url: `godfathergodfather/${id}`,
+          url: `MedicineMedicine/${id}`,
           header: {},
           method: "PUT",
         });
@@ -43,10 +43,10 @@ export default {
         console.error(error);
       }
     },
-    async _addPadrino({ commit }, { data }) {
+    async _addMedicina({ commit }, { data }) {
       try {
         const RES = await postData({
-          url: `godfathergodfather/`,
+          url: `MedicineMedicine/`,
           header: {},
           data,
           method: "POST",
