@@ -30,12 +30,14 @@ export default {
         console.error(error);
       }
     },
-    async _putPaciente({ commit }, { id }) {
+    async _putPaciente({ commit }, { id, data }) {
       try {
+        console.log(id);
         const RES = await postData({
-          url: `patientpatient/${id}`,
+          url: `patientpatient/${id}/`,
           header: {},
           method: "PUT",
+          data,
         });
         console.log("res", RES);
         return RES;

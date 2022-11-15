@@ -179,19 +179,82 @@ export default {
       phone: "",
       nui: "",
       suernames: "",
+
+      id: "",
+
       rules: [(v) => !!v || "Este campo es requerido"],
     };
+  },
+  mounted() {
+    if (this.paciente.editar) {
+      this.names = this.paciente.names;
+      this.suernames = this.paciente.suernames;
+      this.Family_nucleus = this.paciente.Family_nucleus;
+      this.treatment_start_date = this.paciente.treatment_start_date;
+      this.clinic_history = this.paciente.clinic_history;
+      this.admission_date = this.paciente.admission_date;
+      this.age = this.paciente.age;
+      this.birth_date = this.paciente.birth_date;
+      this.clinic_history = this.paciente.clinic_history;
+      this.direction = this.paciente.direction;
+      this.education_level = this.paciente.education_level;
+      this.funeral_insurance = this.paciente.funeral_insurance;
+      this.gender = this.paciente.gender;
+      this.mail = this.paciente.mail;
+      this.names = this.paciente.names;
+      this.nui = this.paciente.nui;
+      this.phone = this.paciente.phone;
+      this.suernames = this.paciente.suernames;
+      this.id = this.paciente.id;
+    }
+  },
+  destroyed() {
+    this.paciente.editar = false;
   },
   methods: {
     ...mapActions({
       _addPaciente: "pacientes/_addPaciente",
+      _putPaciente: "pacientes/_putPaciente",
     }),
     msj(text, color) {
       this.snackbar.estado = true;
       this.snackbar.text = text;
       this.snackbar.color = color ? `${color} darken-2` : "red darken-3";
     },
+    async editarPaciente() {
+      const data = {
+        names: this.names,
+        suernames: this.suernames,
+        Family_nucleus: this.Family_nucleus,
+        treatment_start_date: this.treatment_start_date,
+        clinic_history: this.clinic_history,
+        admission_date: this.admission_date,
+        age: this.age,
+        birth_date: this.birth_date,
+        clinic_history: this.clinic_history,
+        direction: this.direction,
+        education_level: this.education_level,
+        funeral_insurance: this.funeral_insurance,
+        gender: this.gender,
+        mail: this.mail,
+        names: this.names,
+        nui: this.nui,
+        phone: this.phone,
+        suernames: this.suernames,
+      };
+      const id = this.id;
+
+      if (this.$refs.form.validate()) {
+        await this._putPaciente({ id, data });
+        this.$refs.form.reset();
+        this.msj("Paciente editado", "green");
+        setTimeout(() => {
+          this.paciente.estado = false;
+        }, 1000);
+      } else this.msj("Ocurrio un problema", "red");
+    },
     async crearPaciente() {
+      if (this.paciente.editar) return this.editarPaciente();
       const data = {
         names: this.names,
         suernames: this.suernames,
@@ -216,7 +279,10 @@ export default {
         await this._addPaciente({ data });
         this.$refs.form.reset();
         this.msj("Paciente registrado", "green");
-      }
+        setTimeout(() => {
+          this.paciente.estado = false;
+        }, 1000);
+      } else this.msj("Ocurrio un problema", "red");
     },
   },
 };

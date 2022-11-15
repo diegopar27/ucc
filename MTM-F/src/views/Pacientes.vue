@@ -124,6 +124,7 @@ export default {
       this.pacienteop.id = item.id;
 
       this.pacienteop.estado = true;
+      this.pacienteop.editar = true;
     },
     verPaciente(item) {
       this.paciente.familia = item.Family_nucleus;
