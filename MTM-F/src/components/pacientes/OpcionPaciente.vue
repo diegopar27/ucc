@@ -72,7 +72,18 @@
               />
             </v-col>
             <v-col cols="3" class="my-0 py-1">
-              <v-text-field v-model="gender" dense :rules="rules" label="Genero" color="primary" id="suernames" type="text" required outlined />
+              <v-autocomplete
+                :rules="rules"
+                label="Genero"
+                v-model="gender"
+                :items="items"
+                color="primary"
+                id="suernames"
+                type="text"
+                required
+                outlined
+                dense
+              />
             </v-col>
             <v-col cols="3" class="my-0 py-1">
               <v-text-field
@@ -181,6 +192,8 @@ export default {
       suernames: "",
 
       id: "",
+
+      items: [{ text: "Femenino" }, { text: "Masculino" }],
 
       rules: [(v) => !!v || "Este campo es requerido"],
     };
