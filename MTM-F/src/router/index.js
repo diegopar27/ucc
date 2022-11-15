@@ -31,6 +31,13 @@ const routes = [
     },
   },
   {
+    path: "/medicinas",
+    name: "medicinas",
+    component: function () {
+      return import("../views/Medicinas.vue");
+    },
+  },
+  {
     path: "/padrinos",
     name: "padrinos",
     component: function () {

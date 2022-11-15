@@ -30,12 +30,14 @@ export default {
         console.error(error);
       }
     },
-    async _putPadrino({ commit }, { id }) {
+    async _putPadrino({ commit }, { id, data }) {
+      console.log(id, data);
       try {
         const RES = await postData({
-          url: `godfathergodfather/${id}`,
+          url: `godfathergodfather/${id}/`,
           header: {},
           method: "PUT",
+          data,
         });
         console.log("res", RES);
         return RES;
