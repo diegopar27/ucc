@@ -24,7 +24,7 @@
         <v-icon right>exit_to_app</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" dark app class="blue">
+    <v-navigation-drawer v-model="drawer" dark app class="primary">
       <v-list flat>
         <v-list-item v-for="link in links" :key="link.text" router :to="link.route" active-class="border">
           <v-list-item-content>
@@ -36,7 +36,6 @@
   </nav>
 </template>
 <script>
-import Popup from "./Popup.vue";
 export default {
   data: () => ({
     drawer: true,
@@ -48,9 +47,6 @@ export default {
       { text: "Patologias", route: "/patologias" },
       { text: "Padrinos", route: "/padrinos" },
       { text: "tratamientos", route: "/tratamientos" },
-      // { text: "Historias clínicas", route: "/HistoriaClinica" },
-      // { text: "Vacunas", route: "/carnetVacunas" },
-      // { text: "Crecimiento y desarrollo", route: "/crecimientoDesarrollo" },
     ],
   }),
   methods: {
@@ -58,9 +54,7 @@ export default {
       this.$router.push("/Login");
     },
   },
-  components: {
-    Popup,
-  },
+  components: {},
 };
 </script>
 <style scoped>

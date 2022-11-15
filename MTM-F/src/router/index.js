@@ -1,82 +1,46 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from "vue";
+import VueRouter from "vue-router";
 
-
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '*',
-    redirec: '/',
+    path: "*",
+    redirec: "/",
   },
   {
-    path: '/dashboard',
-    name: 'dashboard',
+    path: "/dashboard",
+    name: "dashboard",
     component: function () {
-      return import('../views/Dashboard.vue')
-    }
+      return import("../views/Dashboard.vue");
+    },
   },
   {
-    path: '/Login',
-    name: 'login',
+    path: "/Login",
+    name: "login",
     component: function () {
-      return import('../views/Login.vue')
-    }
+      return import("../views/Login.vue");
+    },
   },
 
   {
-    path: '/paciente',
-    name: 'paciente',
+    path: "/paciente",
+    name: "paciente",
     component: function () {
-      return import('../views/Pacientes.vue')
-    }
+      return import("../views/Pacientes.vue");
+    },
   },
   {
-    path: '/HistoriaClinica',
-    name: 'HistoriaClinica',
+    path: "/padrinos",
+    name: "padrinos",
     component: function () {
-      return import('../views/HistoriaClinica.vue')
-    }
+      return import("../views/Padrinos.vue");
+    },
   },
-  {
-    path: '/carnetVacunas',
-    name: 'carnetVacunas',
-    component: function () {
-      return import('../views/CarnetVacunas.vue')
-    }
-  },
-  {
-    path: '/crecimientoDesarrollo',
-    name: 'crecimientoDesarrollo',
-    component: function () {
-      return import('../views/CrecimientoDesarrollo.vue')
-    }
-  },
-  {
-    path: '/cita',
-    name: 'cita',
-    component: function () {
-      return import('../views/Citas.vue')
-    }
-  },
-  {
-    path: '/padrinos',
-    name: 'padrinos',
-    component: function () {
-      return import('../views/Padrinos.vue')
-    }
-  },
-  {
-    path: '/HomeAdmin',
-    name: 'HomeAdmin',
-    component: function () {
-      return import('../views/HomeAdmin.vue')
-    }
-  }
-]
+];
 
 const router = new VueRouter({
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;

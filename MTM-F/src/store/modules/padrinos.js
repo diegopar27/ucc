@@ -1,31 +1,28 @@
-///api/Patients/listpatients/
-import http from "@/http";
+import postData from "@/http";
 
 export default {
   namespaced: true,
   state: {
     paciente: null,
   },
-  getters: {},
-  mutations: {},
   actions: {
-    async getVacunas({ commit }) {
+    async _getPadrinos({ commit }) {
       try {
-        const respuesta = await http({
-          url: `Vaccines/listvaccines/`,
+        const RES = await postData({
+          url: `godfathergodfather/`,
           header: {},
           method: "GET",
         });
-        console.log("res", respuesta);
-        return respuesta;
+        console.log("res", RES);
+        return RES;
       } catch (error) {
         console.error(error);
       }
     },
-    async getVacunasid({ commit }, { id }) {
+    async getPaciente({ commit }, { id }) {
       try {
-        const respuesta = await http({
-          url: `Vaccines/listvaccines/${id}`,
+        const respuesta = await postData({
+          url: `Patients/listpatients/${id}`,
           header: {},
           method: "GET",
         });
@@ -37,16 +34,15 @@ export default {
     },
     async crearPaciente({ commit }, { data }) {
       try {
-        const respuesta = await http({
-          url: `Vaccines/listvaccines/`,
-          // header: {},
+        const respuesta = await postData({
+          url: `Patients/listpatients/`,
+          header: {},
           data,
           method: "POST",
         });
         return respuesta;
       } catch (error) {
         console.error(error);
-        
       }
     },
   },

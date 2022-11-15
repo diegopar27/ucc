@@ -25,8 +25,6 @@
 </template>
 <script>
 import popapPaciente from "../components/pacientes/CardPacientes.vue";
-import axios from "axios";
-import { Global } from "../global";
 import { mapActions } from "vuex";
 
 export default {

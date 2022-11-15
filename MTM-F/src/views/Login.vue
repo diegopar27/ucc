@@ -10,19 +10,19 @@
               <v-card-text class="mt-12">
                 <v-row justify="center">
                   <v-col cols="8">
-                    <v-text-field label="Email" required solo prepend-icon="email" type="email" color="#03A9F4" v-model="usuario" />
+                    <v-text-field label="Email" required solo prepend-icon="email" type="email" color="primary" v-model="usuario" />
                   </v-col>
                   <v-col cols="8">
                     <v-text-field
                       required
-                      id="password"
-                      label="Password"
-                      solo
-                      name="password"
-                      prepend-icon="lock"
-                      type="password"
-                      color="#03A9F4"
                       v-model="contraseña"
+                      prepend-icon="lock"
+                      label="Password"
+                      name="password"
+                      type="password"
+                      color="primary"
+                      id="password"
+                      solo
                     />
                   </v-col>
                 </v-row>
@@ -39,7 +39,6 @@
 </template>
 
 <script>
-import axios from "axios";
 import { mapActions } from "vuex";
 export default {
   data() {
@@ -57,7 +56,6 @@ export default {
     }),
 
     async login() {
-      console.log(this.$refs.form.validate());
       this.$refs.form.validate();
       let data = {
         usuario: this.usuario,
