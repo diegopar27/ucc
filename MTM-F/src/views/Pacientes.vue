@@ -96,7 +96,6 @@ export default {
   }),
   async mounted() {
     this.pacientes = await this._getPacientes();
-    console.log(this.pacientes);
   },
   methods: {
     ...mapActions({
