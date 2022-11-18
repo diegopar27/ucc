@@ -4,10 +4,10 @@ export default {
   namespaced: true,
   state: {},
   actions: {
-    async _getFamiliar({ commit }) {
+    async _getSuenos({ commit }) {
       try {
         const RES = await postData({
-          url: `patientfamiliar/`,
+          url: `dreamdream/`,
           header: {},
           method: "GET",
         });
@@ -17,10 +17,10 @@ export default {
         console.error(error);
       }
     },
-    async _getFamiliar({ commit }, { id }) {
+    async _getSueno({ commit }, { id }) {
       try {
         const RES = await postData({
-          url: `patientfamiliar/${id}`,
+          url: `dreamdream/${id}`,
           header: {},
           method: "GET",
         });
@@ -30,11 +30,11 @@ export default {
         console.error(error);
       }
     },
-    async _putFamiliar({ commit }, { id, data }) {
+    async _putSuenos({ commit }, { id, data }) {
       try {
         console.log(id);
         const RES = await postData({
-          url: `patientfamiliar/${id}/`,
+          url: `dreamdream/${id}/`,
           header: {},
           method: "PUT",
           data,
@@ -45,14 +45,29 @@ export default {
         console.error(error);
       }
     },
-    async _addFamiliar({ commit }, { data }) {
+    async _addSuenos({ commit }, { data }) {
       try {
         const RES = await postData({
-          url: `patientfamiliar/`,
+          url: `dreamdream/`,
           header: {},
           data,
           method: "POST",
         });
+        return RES;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async _addSuenosXPaciente({ commit }, { date }) {
+      try {
+        console.log(date);
+        const RES = await postData({
+          url: `patientxdreamspatientxdream/`,
+          header: {},
+          data: date,
+          method: "POST",
+        });
+        console.log(RES);
         return RES;
       } catch (error) {
         console.error(error);

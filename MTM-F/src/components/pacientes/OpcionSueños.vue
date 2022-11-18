@@ -78,8 +78,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      _addsueños: "sueñoss/_addsueños",
-      _putsueños: "sueñoss/_putsueños",
+      _addSuenos: "suenos/_addSuenos",
+      _putSuenos: "suenos/_putSuenos",
     }),
     msj(text, color) {
       this.snackbar.estado = true;
@@ -97,7 +97,7 @@ export default {
       const id = this.id;
 
       if (this.$refs.form.validate()) {
-        await this._putsueños({ id, data });
+        await this._putSuenos({ id, data });
         this.$refs.form.reset();
         this.msj("Sueño editada", "green");
         setTimeout(() => {
@@ -113,7 +113,7 @@ export default {
         description: this.description,
       };
       if (this.$refs.form.validate()) {
-        await this._addsueños({ data });
+        await this._addSuenos({ data });
         this.$refs.form.reset();
         this.msj("Sueño registrada", "green");
         setTimeout(() => {

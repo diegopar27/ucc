@@ -59,16 +59,19 @@
               ></v-checkbox>
             </v-col>
             <v-col cols="3" class="my-0 py-1">
-              <v-text-field
-                v-model="Family_nucleus"
-                dense
+              <v-autocomplete
                 :rules="rules"
-                label="Nucleo familiar"
+                v-model="sueno"
+                :items="item_suenos"
+                item-value="id"
+                item-text="name"
                 color="primary"
                 id="suernames"
+                label="Sueños"
                 type="text"
                 required
                 outlined
+                dense
               />
             </v-col>
             <v-col cols="3" class="my-0 py-1">
@@ -185,6 +188,7 @@ export default {
       education_level: "",
       funeral_insurance: "",
       gender: "",
+      sueno: "",
       mail: "",
       names: "",
       phone: "",
@@ -192,17 +196,17 @@ export default {
       suernames: "",
 
       id: "",
-
-      items: [{ text: "Femenino" }, { text: "Masculino" }],
+      item_suenos: [],
+      items: [{ text: "Femenino" }, { text: "Masculino" }, { text: "Otro" }],
 
       rules: [(v) => !!v || "Este campo es requerido"],
     };
   },
-  mounted() {
+  async mounted() {
     if (this.paciente.editar) {
       this.names = this.paciente.names;
       this.suernames = this.paciente.suernames;
-      this.Family_nucleus = this.paciente.Family_nucleus;
+      this.Family_nucleus = "desert";
       this.treatment_start_date = this.paciente.treatment_start_date;
       this.clinic_history = this.paciente.clinic_history;
       this.admission_date = this.paciente.admission_date;
@@ -220,14 +224,17 @@ export default {
       this.suernames = this.paciente.suernames;
       this.id = this.paciente.id;
     }
+    this.item_suenos = await this._getSuenos();
   },
   destroyed() {
     this.paciente.editar = false;
   },
   methods: {
     ...mapActions({
+      _addSuenosXPaciente: "suenos/_addSuenosXPaciente",
       _addPaciente: "pacientes/_addPaciente",
       _putPaciente: "pacientes/_putPaciente",
+      _getSuenos: "suenos/_getSuenos",
     }),
     msj(text, color) {
       this.snackbar.estado = true;
@@ -238,7 +245,7 @@ export default {
       const data = {
         names: this.names,
         suernames: this.suernames,
-        Family_nucleus: this.Family_nucleus,
+        Family_nucleus: "desert",
         treatment_start_date: this.treatment_start_date,
         clinic_history: this.clinic_history,
         admission_date: this.admission_date,
@@ -259,6 +266,11 @@ export default {
 
       if (this.$refs.form.validate()) {
         await this._putPaciente({ id, data });
+        const date = {
+          id_patient: this.id,
+          id_dreams: [this.sueno],
+        };
+        await this._addSuenosXPaciente({ date });
         this.$refs.form.reset();
         this.msj("Paciente editado", "green");
         setTimeout(() => {
@@ -271,7 +283,7 @@ export default {
       const data = {
         names: this.names,
         suernames: this.suernames,
-        Family_nucleus: this.Family_nucleus,
+        Family_nucleus: "desert",
         treatment_start_date: this.treatment_start_date,
         clinic_history: this.clinic_history,
         admission_date: this.admission_date,
@@ -290,6 +302,7 @@ export default {
       };
       if (this.$refs.form.validate()) {
         await this._addPaciente({ data });
+
         this.$refs.form.reset();
         this.msj("Paciente registrado", "green");
         setTimeout(() => {
