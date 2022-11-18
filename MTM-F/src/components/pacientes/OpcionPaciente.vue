@@ -70,6 +70,7 @@
                 label="Sueños"
                 type="text"
                 required
+                multiple
                 outlined
                 dense
               />
@@ -91,14 +92,14 @@
             <v-col cols="3" class="my-0 py-1">
               <v-text-field
                 v-model="admission_date"
-                dense
-                :rules="rules"
                 label="Fecha de ingreso"
                 color="primary"
                 id="suernames"
+                :rules="rules"
                 type="date"
                 required
                 outlined
+                dense
               />
             </v-col>
             <v-col cols="3" class="my-0 py-1">
@@ -225,6 +226,9 @@ export default {
       this.id = this.paciente.id;
     }
     this.item_suenos = await this._getSuenos();
+    const id = this.id;
+    let a = await this._getSuenosXPaciente({ id });
+    console.log(a);
   },
   destroyed() {
     this.paciente.editar = false;
@@ -235,6 +239,7 @@ export default {
       _addPaciente: "pacientes/_addPaciente",
       _putPaciente: "pacientes/_putPaciente",
       _getSuenos: "suenos/_getSuenos",
+      _getSuenosXPaciente: "suenos/_getSuenosXPaciente",
     }),
     msj(text, color) {
       this.snackbar.estado = true;
@@ -268,7 +273,7 @@ export default {
         await this._putPaciente({ id, data });
         const date = {
           id_patient: this.id,
-          id_dreams: [this.sueno],
+          id_dreams: this.sueno,
         };
         await this._addSuenosXPaciente({ date });
         this.$refs.form.reset();

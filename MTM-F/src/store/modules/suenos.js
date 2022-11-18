@@ -73,5 +73,18 @@ export default {
         console.error(error);
       }
     },
+    async _getSuenosXPaciente({ commit }, { id }) {
+      try {
+        const RES = await postData({
+          url: `patientxdreamspatientxdream/${id}/`,
+          header: {},
+          method: "GET",
+        });
+        console.log("res", RES);
+        return RES;
+      } catch (error) {
+        console.error(error);
+      }
+    },
   },
 };
