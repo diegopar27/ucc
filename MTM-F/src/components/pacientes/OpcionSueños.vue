@@ -1,33 +1,23 @@
 <template>
-  <v-dialog v-model="sueños.estado" max-width="900">
+  <v-dialog v-model="suenos.estado" max-width="900">
     <v-card>
       <v-footer color="primary" class="white--text">
         <h1>Sueños</h1>
         <v-icon class="ml-2" color="white" size="35">mdi-book</v-icon>
         <v-spacer> </v-spacer>
-        <v-btn icon @click="sueños.estado = false"> <v-icon color="white">mdi-exit-run</v-icon></v-btn>
+        <v-btn icon @click="suenos.estado = false"> <v-icon color="white">mdi-exit-run</v-icon></v-btn>
       </v-footer>
       <v-container>
         <v-form ref="form" v-model="valid" lazy-validation>
           <v-row justify="center" class="mt-4">
             <v-col cols="3" class="my-0 py-1">
-              <v-text-field v-model="types" dense :rules="rules" label="Tipo patología" color="primary" id="types" type="text" required outlined />
+              <v-text-field v-model="types" dense :rules="rules" label="Tipo" color="primary" id="types" type="text" required outlined />
             </v-col>
             <v-col cols="3" class="my-0 py-1">
               <v-text-field v-model="name" dense :rules="rules" label="Nombre" color="primary" id="name" type="text" required outlined />
             </v-col>
             <v-col cols="3" class="my-0 py-1">
-              <v-text-field
-                v-model="description"
-                id="description"
-                color="primary"
-                :rules="rules"
-                label="Tiempo"
-                type="date"
-                required
-                outlined
-                dense
-              />
+              <v-text-field v-model="description" id="description" color="primary" :rules="rules" label="Descripción" required outlined dense />
             </v-col>
           </v-row>
         </v-form>
@@ -35,7 +25,7 @@
       <v-divider class="mx-2 mt-2"></v-divider>
       <v-footer color="white" class="white--text py-3">
         <v-spacer></v-spacer>
-        <v-btn class="mx-auto" color="primary" @click="sueños.estado = false"> Cancelar </v-btn>
+        <v-btn class="mx-auto" color="primary" @click="suenos.estado = false"> Cancelar </v-btn>
         <v-btn class="mx-auto ml-2" :disabled="!valid" color="success" @click="crearsueños()"> Registrar </v-btn>
       </v-footer>
     </v-card>
@@ -54,7 +44,7 @@
 import { mapActions } from "vuex";
 export default {
   props: {
-    sueños: Object,
+    suenos: Object,
   },
   data() {
     return {
@@ -62,29 +52,29 @@ export default {
       snackbar: {
         estado: false,
       },
-
       types: "",
       name: "",
-      name: "",
+      description: "",
       condition: "",
       cycle: "",
 
       id: "",
+
       rules: [(v) => !!v || "Este campo es requerido"],
     };
   },
   mounted() {
-    if (this.sueños.editar) {
-      this.types = this.sueños.types;
-      this.name = this.sueños.name;
-      this.name = this.sueños.name;
-      this.condition = this.sueños.condition;
-      this.cycle = this.sueños.cycle;
-      this.id = this.sueños.id;
+    if (this.suenos.editar) {
+      this.types = this.suenos.types;
+      this.name = this.suenos.name;
+      this.description = this.suenos.description;
+      this.condition = this.suenos.condition;
+      this.cycle = this.suenos.cycle;
+      this.id = this.suenos.id;
     }
   },
   destroyed() {
-    this.sueños.editar = false;
+    this.suenos.editar = false;
   },
   methods: {
     ...mapActions({
@@ -109,27 +99,25 @@ export default {
       if (this.$refs.form.validate()) {
         await this._putsueños({ id, data });
         this.$refs.form.reset();
-        this.msj("Patología editada", "green");
+        this.msj("Sueño editada", "green");
         setTimeout(() => {
-          this.sueños.estado = false;
+          this.suenos.estado = false;
         }, 1000);
       } else this.msj("Ocurrio un problema", "red");
     },
     async crearsueños() {
-      if (this.sueños.editar) return this.editarsueños();
+      if (this.suenos.editar) return this.editarsueños();
       const data = {
         types: this.types,
         name: this.name,
-        name: this.name,
-        condition: this.condition,
-        cycle: this.cycle,
+        description: this.description,
       };
       if (this.$refs.form.validate()) {
         await this._addsueños({ data });
         this.$refs.form.reset();
-        this.msj("Patología registrada", "green");
+        this.msj("Sueño registrada", "green");
         setTimeout(() => {
-          this.sueños.estado = false;
+          this.suenos.estado = false;
         }, 1000);
       } else this.msj("Ocurrio un problema", "red");
     },

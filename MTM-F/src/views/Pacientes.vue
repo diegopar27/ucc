@@ -9,7 +9,10 @@
           <v-col cols="4">
             <v-text-field class="pt-4 pl-4" outlined dense v-model="search" label="Buscar" />
           </v-col>
-          <v-col cols="8" class="text-end">
+          <v-col cols="4" class="text-end">
+            <v-btn class="mt-4 mr-4" color="success" dark large @click="suenosop.estado = true"> Crear sueño </v-btn>
+          </v-col>
+          <v-col cols="4" class="text-end">
             <v-btn class="mt-4 mr-4" color="success" dark large @click="pacienteop.estado = true"> Crear paciente </v-btn>
           </v-col>
         </v-row>
@@ -26,17 +29,20 @@
     </v-row>
     <PACIENTE :paciente="paciente" v-if="paciente.estado"></PACIENTE>
     <PACIENTEOP :paciente="pacienteop" v-if="pacienteop.estado"></PACIENTEOP>
+    <SUENOS :suenos="suenosop" v-if="suenosop.estado"></SUENOS>
   </v-container>
 </template>
 <script>
 import popapPaciente from "../components/pacientes/CardPacientes.vue";
 import OpcionPaciente from "../components/pacientes/OpcionPaciente.vue";
+import OpcionSueños from "../components/pacientes/OpcionSueños.vue";
 import { mapActions } from "vuex";
 
 export default {
   components: {
     PACIENTE: popapPaciente,
     PACIENTEOP: OpcionPaciente,
+    SUENOS: OpcionSueños,
   },
   data: () => ({
     search: "",
@@ -90,6 +96,9 @@ export default {
       estado: false,
     },
     pacienteop: {
+      estado: false,
+    },
+    suenosop: {
       estado: false,
     },
     pacientes: [],
