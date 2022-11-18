@@ -4,10 +4,10 @@ export default {
   namespaced: true,
   state: {},
   actions: {
-    async _getFamiliar({ commit }) {
+    async _getFamiliares({ commit }) {
       try {
         const RES = await postData({
-          url: `patientfamiliar/`,
+          url: `familyfamily/`,
           header: {},
           method: "GET",
         });
@@ -20,7 +20,7 @@ export default {
     async _getFamiliar({ commit }, { id }) {
       try {
         const RES = await postData({
-          url: `patientfamiliar/${id}`,
+          url: `familyfamily/${id}`,
           header: {},
           method: "GET",
         });
@@ -34,7 +34,7 @@ export default {
       try {
         console.log(id);
         const RES = await postData({
-          url: `patientfamiliar/${id}/`,
+          url: `familyfamily/${id}/`,
           header: {},
           method: "PUT",
           data,
@@ -47,12 +47,14 @@ export default {
     },
     async _addFamiliar({ commit }, { data }) {
       try {
+        console.log("heihaskjdhfkshfu");
         const RES = await postData({
-          url: `patientfamiliar/`,
+          url: `familyfamily/`,
           header: {},
           data,
           method: "POST",
         });
+        console.log(RES);
         return RES;
       } catch (error) {
         console.error(error);

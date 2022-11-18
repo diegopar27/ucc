@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="paciente.estado" max-width="900">
+  <v-dialog v-model="paciente.estado" max-width="900" persistent>
     <v-card>
       <v-footer color="primary" class="white--text">
         <h1>Paciente {{ paciente.nombre }}</h1>
@@ -128,6 +128,38 @@
               <v-text-field v-model="nui" dense :rules="rules" label="Nui" color="primary" id="suernames" type="number" required outlined />
             </v-col>
 
+            <v-col cols="6" class="my-0 py-1">
+              <v-autocomplete
+                :rules="rules"
+                label="Asignar familiar"
+                v-model="familiar"
+                :items="items_familiares"
+                color="primary"
+                item-text="surnames"
+                item-value="id"
+                id="suernames"
+                type="text"
+                required
+                outlined
+                dense
+              />
+            </v-col>
+            <v-col cols="6" class="my-0 py-1">
+              <v-autocomplete
+                :rules="rules"
+                label="Asignar padrino"
+                v-model="padrino"
+                :items="items_padrinos"
+                color="primary"
+                item-text="surname"
+                item-value="id"
+                id="suernames"
+                type="text"
+                required
+                outlined
+                dense
+              />
+            </v-col>
             <v-col cols="12" class="my-0 py-1">
               <v-textarea
                 v-model="clinic_history"
@@ -195,9 +227,13 @@ export default {
       phone: "",
       nui: "",
       suernames: "",
+      familiar: "",
+      padrino: "",
 
       id: "",
       item_suenos: [],
+      items_padrinos: [],
+      items_familiares: [],
       items: [{ text: "Femenino" }, { text: "Masculino" }, { text: "Otro" }],
 
       rules: [(v) => !!v || "Este campo es requerido"],
@@ -229,6 +265,11 @@ export default {
     const id = this.id;
     let a = await this._getSuenosXPaciente({ id });
     console.log(a);
+
+    this.items_familiares = await this._getFamiliares();
+    this.items_padrinos = await this._getPadrinos();
+    console.log(this.items_familiares);
+    console.log(this.items_padrinos);
   },
   destroyed() {
     this.paciente.editar = false;
@@ -236,9 +277,11 @@ export default {
   methods: {
     ...mapActions({
       _addSuenosXPaciente: "suenos/_addSuenosXPaciente",
+      _getFamiliares: "familiares/_getFamiliares",
       _addPaciente: "pacientes/_addPaciente",
       _putPaciente: "pacientes/_putPaciente",
       _getSuenos: "suenos/_getSuenos",
+      _getPadrinos: "padrinos/_getPadrinos",
       _getSuenosXPaciente: "suenos/_getSuenosXPaciente",
     }),
     msj(text, color) {

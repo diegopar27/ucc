@@ -5,51 +5,19 @@
         <h1>Familiar {{ familiar.nombre }}</h1>
         <v-icon class="ml-2" color="white" size="35">mdi-book</v-icon>
         <v-spacer> </v-spacer>
-        <v-btn icon @click="familiar.estado = false">
-          <v-icon color="white">mdi-exit-run</v-icon></v-btn
-        >
+        <v-btn icon @click="familiar.estado = false"> <v-icon color="white">mdi-exit-run</v-icon></v-btn>
       </v-footer>
       <v-container>
         <v-form ref="form" v-model="valid" lazy-validation>
           <v-row justify="center" class="mt-4">
             <v-col cols="3" class="my-0 py-1">
-              <v-text-field
-                v-model="names"
-                dense
-                :rules="rules"
-                label="Nombres"
-                color="primary"
-                id="names"
-                type="text"
-                required
-                outlined
-              />
+              <v-text-field v-model="names" dense :rules="rules" label="Nombres" color="primary" id="names" type="text" required outlined />
             </v-col>
             <v-col cols="3" class="my-0 py-1">
-              <v-text-field
-                v-model="suernames"
-                dense
-                :rules="rules"
-                label="Apellidos"
-                color="primary"
-                id="suernames"
-                type="text"
-                required
-                outlined
-              />
+              <v-text-field v-model="surnames" dense :rules="rules" label="Apellidos" color="primary" id="surnames" type="text" required outlined />
             </v-col>
             <v-col cols="3" class="my-0 py-1">
-              <v-text-field
-                v-model="age"
-                dense
-                :rules="rules"
-                label="Edad"
-                color="primary"
-                id="age"
-                type="number"
-                required
-                outlined
-              />
+              <v-text-field v-model="age" dense :rules="rules" label="Edad" color="primary" id="age" type="number" required outlined />
             </v-col>
             <v-col cols="3" class="my-0 py-1">
               <v-text-field
@@ -79,30 +47,10 @@
               />
             </v-col>
             <v-col cols="3" class="my-0 py-1">
-              <v-text-field
-                v-model="mail"
-                dense
-                :rules="rules"
-                label="Correo"
-                color="primary"
-                id="mail"
-                type="email"
-                required
-                outlined
-              />
+              <v-text-field v-model="mail" dense :rules="rules" label="Correo" color="primary" id="mail" type="email" required outlined />
             </v-col>
             <v-col cols="6" class="my-0 py-1">
-              <v-text-field
-                v-model="direction"
-                dense
-                :rules="rules"
-                label="Dirección"
-                color="primary"
-                id="direction"
-                type="text"
-                required
-                outlined
-              />
+              <v-text-field v-model="direction" dense :rules="rules" label="Dirección" color="primary" id="direction" type="text" required outlined />
             </v-col>
             <v-col cols="4" class="my-0 py-1">
               <v-text-field
@@ -118,30 +66,10 @@
               />
             </v-col>
             <v-col cols="4" class="my-0 py-1">
-              <v-text-field
-                v-model="phone"
-                dense
-                :rules="rules"
-                label="Teléfono"
-                color="primary"
-                id="phone"
-                type="number"
-                required
-                outlined
-              />
+              <v-text-field v-model="phone" dense :rules="rules" label="Teléfono" color="primary" id="phone" type="number" required outlined />
             </v-col>
             <v-col cols="4" class="my-0 py-1">
-              <v-text-field
-                v-model="nui"
-                dense
-                :rules="rules"
-                label="Nui"
-                color="primary"
-                id="nui"
-                type="number"
-                required
-                outlined
-              />
+              <v-text-field v-model="nui" dense :rules="rules" label="Nui" color="primary" id="nui" type="number" required outlined />
             </v-col>
             <v-col cols="4" class="my-0 py-1">
               <v-text-field
@@ -203,26 +131,11 @@
       <v-divider class="mx-2 mt-2"></v-divider>
       <v-footer color="white" class="white--text py-3">
         <v-spacer></v-spacer>
-        <v-btn class="mx-auto" color="primary" @click="familiar.estado = false">
-          Cancelar
-        </v-btn>
-        <v-btn
-          class="mx-auto ml-2"
-          :disabled="!valid"
-          color="success"
-          @click="crearFamiliar()"
-        >
-          Registrar
-        </v-btn>
+        <v-btn class="mx-auto" color="primary" @click="familiar.estado = false"> Cancelar </v-btn>
+        <v-btn class="mx-auto ml-2" :disabled="!valid" color="success" @click="crearFamiliar()"> Registrar </v-btn>
       </v-footer>
     </v-card>
-    <v-snackbar
-      v-model="snackbar.estado"
-      :color="snackbar.color"
-      :timeout="1500"
-      bottom
-      left
-    >
+    <v-snackbar v-model="snackbar.estado" :color="snackbar.color" :timeout="1500" bottom left>
       {{ snackbar.text }}
       <template v-slot:action="{ attrs }">
         <v-btn icon dark text @click="snackbar.estado = false" v-bind="attrs">
@@ -247,7 +160,7 @@ export default {
       },
 
       names: "",
-      suernames: "",
+      surnames: "",
       age: "",
       birth_date: "",
       direction: "",
@@ -259,7 +172,7 @@ export default {
       marital_status: "",
       occupation: "",
       background: "",
-      comptetencies:"",
+      comptetencies: "",
       id: "",
 
       items: [{ text: "Femenino" }, { text: "Masculino" }],
@@ -270,7 +183,7 @@ export default {
   mounted() {
     if (this.familiar.editar) {
       this.names = this.familiar.names;
-      this.suernames = this.familiar.suernames;
+      this.surnames = this.familiar.surnames;
       this.age = this.familiar.age;
       this.birth_date = this.familiar.birth_date;
       this.direction = this.familiar.direction;
@@ -301,20 +214,20 @@ export default {
     },
     async editarFamiliar() {
       const data = {
-        names: this.names,
-        suernames: this.suernames,
-        ages: this.age,
-        birth_date: this.birth_date,
-        direction: this.direction,
         education_level: this.education_level,
-        gender: this.gender,
-        mail: this.mail,
-        phone: this.phone,
-        nui: this.nui,
         marital_status: this.marital_status,
-        accupation: this.occupation,
-        comptetencies: this.comptetencies
-
+        comptetencies: this.comptetencies,
+        birth_date: this.birth_date,
+        background: this.background,
+        occupation: this.occupation,
+        surnames: this.surnames,
+        direction: this.direction,
+        gender: this.gender,
+        names: this.names,
+        phone: this.phone,
+        mail: this.mail,
+        ages: this.age,
+        nui: this.nui,
       };
       const id = this.id;
 
@@ -330,21 +243,23 @@ export default {
     async crearFamiliar() {
       if (this.familiar.editar) return this.editarFamiliar();
       const data = {
-        names: this.names,
-        suernames: this.suernames,
-        ages: this.age,
-        birth_date: this.birth_date,
-        direction: this.direction,
         education_level: this.education_level,
-        gender: this.gender,
-        mail: this.mail,
-        phone: this.phone,
-        nui: this.nui,
         marital_status: this.marital_status,
-        accupation: this.occupation,
-        comptetencies: this.comptetencies
+        comptetencies: this.comptetencies,
+        birth_date: this.birth_date,
+        background: this.background,
+        occupation: this.occupation,
+        surnames: this.surnames,
+        direction: this.direction,
+        gender: this.gender,
+        names: this.names,
+        phone: this.phone,
+        mail: this.mail,
+        ages: this.age,
+        nui: this.nui,
       };
       if (this.$refs.form.validate()) {
+        console.log(data);
         await this._addFamiliar({ data });
         this.$refs.form.reset();
         this.msj("Familiar registrado", "green");
@@ -358,8 +273,3 @@ export default {
 </script>
 
 <style></style>
-
-   
-   
-    
-    
