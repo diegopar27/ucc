@@ -103,26 +103,7 @@ export default {
       _getPacientes: "pacientes/_getPacientes",
     }),
     editPaciente(item) {
-      this.pacienteop.names = item.names;
-      this.pacienteop.suernames = item.suernames;
-      this.pacienteop.Family_nucleus = item.Family_nucleus;
-      this.pacienteop.treatment_start_date = item.treatment_start_date;
-      this.pacienteop.clinic_history = item.clinic_history;
-      this.pacienteop.admission_date = item.admission_date;
-      this.pacienteop.age = item.age;
-      this.pacienteop.birth_date = item.birth_date;
-      this.pacienteop.clinic_history = item.clinic_history;
-      this.pacienteop.direction = item.direction;
-      this.pacienteop.education_level = item.education_level;
-      this.pacienteop.funeral_insurance = item.funeral_insurance;
-      this.pacienteop.gender = item.gender;
-      this.pacienteop.mail = item.mail;
-      this.pacienteop.names = item.names;
-      this.pacienteop.nui = item.nui;
-      this.pacienteop.phone = item.phone;
-      this.pacienteop.suernames = item.suernames;
-      this.pacienteop.id = item.id;
-
+      this.pacienteop = item;
       this.pacienteop.estado = true;
       this.pacienteop.editar = true;
     },
