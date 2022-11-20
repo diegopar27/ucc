@@ -7,7 +7,7 @@ export default {
     async _getSuenos({ commit }) {
       try {
         const RES = await postData({
-          url: `dreamdream/`,
+          url: `dream/`,
           header: {},
           method: "GET",
         });
@@ -20,7 +20,7 @@ export default {
     async _getSueno({ commit }, { id }) {
       try {
         const RES = await postData({
-          url: `dreamdream/${id}`,
+          url: `dream/${id}`,
           header: {},
           method: "GET",
         });
@@ -34,7 +34,7 @@ export default {
       try {
         console.log(id);
         const RES = await postData({
-          url: `dreamdream/${id}/`,
+          url: `dream/${id}/`,
           header: {},
           method: "PUT",
           data,
@@ -48,7 +48,7 @@ export default {
     async _addSuenos({ commit }, { data }) {
       try {
         const RES = await postData({
-          url: `dreamdream/`,
+          url: `dream/`,
           header: {},
           data,
           method: "POST",
