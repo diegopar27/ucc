@@ -25,11 +25,10 @@
                 v-model="patient"
                 label="Pacientes"
                 item-value="id"
-                item-text="name"
+                item-text="names"
                 color="primary"
                 id="suernames"
                 type="text"
-                multiple
                 outlined
                 dense
               />
@@ -72,6 +71,7 @@ export default {
       description: "",
       condition: "",
       cycle: "",
+      patient: "",
 
       items_pacientes: [],
 
@@ -130,6 +130,7 @@ export default {
         types: this.types,
         name: this.name,
         description: this.description,
+        patient: this.patient,
       };
       if (this.$refs.form.validate()) {
         await this._addSuenos({ data });
