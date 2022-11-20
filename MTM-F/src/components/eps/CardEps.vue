@@ -43,9 +43,6 @@ export default {
   props: {
     eps: Object,
   },
-  mounted() {
-    console.log("estoy acca sapo hpta");
-  },
 };
 </script>
 
