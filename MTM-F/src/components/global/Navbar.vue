@@ -47,6 +47,7 @@ export default {
       { text: "Patologias", route: "/patologias" },
       { text: "Familiares", route: "/familiares" },
       { text: "Padrinos", route: "/padrinos" },
+      { text: "Eps", route: "/Eps" },
     ],
   }),
   methods: {

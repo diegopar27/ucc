@@ -67,6 +67,13 @@ const routes = [
       return import("../views/Examenes.vue");
     },
   },
+  {
+    path: "/eps",
+    name: "eps",
+    component: function () {
+      return import("../views/Eps.vue");
+    },
+  },
 ];
 
 const router = new VueRouter({

@@ -10,6 +10,7 @@ import pacientes from "./modules/pacientes";
 import tratamiento from "./modules/tratamiento";
 import patologias from "./modules/patologias";
 import familiares from "./modules/familiares";
+import eps from "./modules/eps";
 export default new Vuex.Store({
   state: {},
   getters: {},
@@ -25,5 +26,6 @@ export default new Vuex.Store({
     pacientes,
     tratamiento,
     patologias,
+    eps,
   },
 });
