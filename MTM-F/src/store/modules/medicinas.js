@@ -7,7 +7,7 @@ export default {
     async _getMedicinas({ commit }) {
       try {
         const RES = await postData({
-          url: `MedicineMedicine/`,
+          url: `Medicine/`,
           header: {},
           method: "GET",
         });
@@ -20,7 +20,7 @@ export default {
     async _getMedicina({ commit }, { id }) {
       try {
         const RES = await postData({
-          url: `MedicineMedicine/${id}`,
+          url: `Medicine/${id}`,
           header: {},
           method: "GET",
         });
@@ -33,7 +33,7 @@ export default {
     async _putMedicina({ commit }, { id, data }) {
       try {
         const RES = await postData({
-          url: `MedicineMedicine/${id}/`,
+          url: `Medicine/${id}/`,
           header: {},
           method: "PUT",
           data,
@@ -47,7 +47,7 @@ export default {
     async _addMedicina({ commit }, { data }) {
       try {
         const RES = await postData({
-          url: `MedicineMedicine/`,
+          url: `Medicine/`,
           header: {},
           data,
           method: "POST",

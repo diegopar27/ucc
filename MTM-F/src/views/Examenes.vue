@@ -29,8 +29,8 @@
   </v-container>
 </template>
 <script>
-import popapExamen from "../components/examenes/CardExamenes.vue";
 import OpcionExamen from "../components/examenes/OpcionExamen.vue";
+import popapExamen from "../components/examenes/CardExamenes.vue";
 import { mapActions } from "vuex";
 
 export default {

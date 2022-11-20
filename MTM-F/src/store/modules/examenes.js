@@ -7,7 +7,7 @@ export default {
     async _getExamenes({ commit }) {
       try {
         const RES = await postData({
-          url: `examExams/`,
+          url: `Exams/`,
           header: {},
           method: "GET",
         });
@@ -20,7 +20,7 @@ export default {
     async _getExamen({ commit }, { id }) {
       try {
         const RES = await postData({
-          url: `examExams/${id}`,
+          url: `Exams/${id}`,
           header: {},
           method: "GET",
         });
@@ -33,7 +33,7 @@ export default {
     async _putExamen({ commit }, { id, data }) {
       try {
         const RES = await postData({
-          url: `examExams/${id}/`,
+          url: `Exams/${id}/`,
           header: {},
           method: "PUT",
           data,
@@ -47,7 +47,7 @@ export default {
     async _addExamen({ commit }, { data }) {
       try {
         const RES = await postData({
-          url: `examExams/`,
+          url: `Exams/`,
           header: {},
           data,
           method: "POST",

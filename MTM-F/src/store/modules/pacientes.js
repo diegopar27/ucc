@@ -7,7 +7,7 @@ export default {
     async _getPacientes({ commit }) {
       try {
         const RES = await postData({
-          url: `patientpatient/`,
+          url: `patient/`,
           header: {},
           method: "GET",
         });
@@ -20,7 +20,7 @@ export default {
     async _getPaciente({ commit }, { id }) {
       try {
         const RES = await postData({
-          url: `patientpatient/${id}`,
+          url: `patient/${id}`,
           header: {},
           method: "GET",
         });
@@ -34,7 +34,7 @@ export default {
       try {
         console.log(id);
         const RES = await postData({
-          url: `patientpatient/${id}/`,
+          url: `patient/${id}/`,
           header: {},
           method: "PUT",
           data,
@@ -48,7 +48,7 @@ export default {
     async _addPaciente({ commit }, { data }) {
       try {
         const RES = await postData({
-          url: `patientpatient/`,
+          url: `patient/`,
           header: {},
           data,
           method: "POST",

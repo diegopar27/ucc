@@ -7,7 +7,7 @@ export default {
     async _getPadrinos({ commit }) {
       try {
         const RES = await postData({
-          url: `godfathergodfather/`,
+          url: `godfather/`,
           header: {},
           method: "GET",
         });
@@ -20,7 +20,7 @@ export default {
     async _getPadrino({ commit }, { id }) {
       try {
         const RES = await postData({
-          url: `godfathergodfather/${id}`,
+          url: `godfather/${id}`,
           header: {},
           method: "GET",
         });
@@ -34,7 +34,7 @@ export default {
       console.log(id, data);
       try {
         const RES = await postData({
-          url: `godfathergodfather/${id}/`,
+          url: `godfather/${id}/`,
           header: {},
           method: "PUT",
           data,
@@ -48,7 +48,7 @@ export default {
     async _addPadrino({ commit }, { data }) {
       try {
         const RES = await postData({
-          url: `godfathergodfather/`,
+          url: `godfather/`,
           header: {},
           data,
           method: "POST",

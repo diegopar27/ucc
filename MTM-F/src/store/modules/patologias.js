@@ -7,7 +7,7 @@ export default {
     async _getPatologia({ commit }, { id }) {
       try {
         const RES = await postData({
-          url: `pathologyPathology/${id}`,
+          url: `Pathology/${id}`,
           header: {},
           method: "GET",
         });
@@ -20,7 +20,7 @@ export default {
     async _getPatologias({ commit }) {
       try {
         const RES = await postData({
-          url: `pathologyPathology/`,
+          url: `Pathology/`,
           header: {},
           method: "GET",
         });
@@ -33,7 +33,7 @@ export default {
     async _putPatologia({ commit }, { id, data }) {
       try {
         const RES = await postData({
-          url: `pathologyPathology/${id}/`,
+          url: `Pathology/${id}/`,
           header: {},
           method: "PUT",
           data,
@@ -47,7 +47,7 @@ export default {
     async _addPatologia({ commit }, { data }) {
       try {
         const RES = await postData({
-          url: `pathologyPathology/`,
+          url: `Pathology/`,
           header: {},
           data,
           method: "POST",

@@ -62,7 +62,7 @@ export default {
       try {
         console.log(date);
         const RES = await postData({
-          url: `patientxdreamspatientxdream/`,
+          url: `patientxdreams/`,
           header: {},
           data: date,
           method: "POST",
@@ -76,7 +76,7 @@ export default {
     async _getSuenosXPaciente({ commit }, { id }) {
       try {
         const RES = await postData({
-          url: `patientxdreamspatientxdream/${id}/`,
+          url: `patientxdreams/${id}/`,
           header: {},
           method: "GET",
         });

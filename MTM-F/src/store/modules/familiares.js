@@ -7,7 +7,7 @@ export default {
     async _getFamiliares({ commit }) {
       try {
         const RES = await postData({
-          url: `familyfamily/`,
+          url: `family/`,
           header: {},
           method: "GET",
         });
@@ -20,7 +20,7 @@ export default {
     async _getFamiliar({ commit }, { id }) {
       try {
         const RES = await postData({
-          url: `familyfamily/${id}`,
+          url: `family/${id}`,
           header: {},
           method: "GET",
         });
@@ -34,7 +34,7 @@ export default {
       try {
         console.log(id);
         const RES = await postData({
-          url: `familyfamily/${id}/`,
+          url: `family/${id}/`,
           header: {},
           method: "PUT",
           data,
@@ -49,7 +49,7 @@ export default {
       try {
         console.log("heihaskjdhfkshfu");
         const RES = await postData({
-          url: `familyfamily/`,
+          url: `family/`,
           header: {},
           data,
           method: "POST",
