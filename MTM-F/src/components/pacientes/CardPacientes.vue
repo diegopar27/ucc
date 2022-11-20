@@ -67,6 +67,8 @@
       <v-footer color="white" class="white--text py-6">
         <v-btn class="mx-auto"> Familiares </v-btn>
         <v-btn class="mx-auto"> Padrinos </v-btn>
+        <v-btn class="mx-auto" href="../views/Examenes#/Examenes"> Examenes </v-btn>
+        <v-btn class="mx-auto"> Patologia </v-btn>
       </v-footer>
     </v-card>
   </v-dialog>
@@ -76,6 +78,13 @@
 export default {
   props: {
     paciente: Object,
+  },
+  methods: {
+    examen() {
+      this.paciente.estado = false;
+
+      console.log("eeeee");
+    },
   },
 };
 </script>

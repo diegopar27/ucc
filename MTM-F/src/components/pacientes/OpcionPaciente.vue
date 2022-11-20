@@ -60,7 +60,6 @@
             </v-col>
             <v-col cols="3" class="my-0 py-1">
               <v-autocomplete
-                :rules="rules"
                 v-model="sueno"
                 :items="item_suenos"
                 item-value="id"
@@ -69,7 +68,6 @@
                 id="suernames"
                 label="Sueños"
                 type="text"
-                required
                 multiple
                 outlined
                 dense
@@ -130,23 +128,20 @@
 
             <v-col cols="6" class="my-0 py-1">
               <v-autocomplete
-                :rules="rules"
-                label="Asignar familiar"
-                v-model="familiar"
                 :items="items_familiares"
-                color="primary"
+                label="Asignar familiar"
                 item-text="surnames"
+                v-model="familiar"
+                color="primary"
                 item-value="id"
                 id="suernames"
                 type="text"
-                required
                 outlined
                 dense
               />
             </v-col>
             <v-col cols="6" class="my-0 py-1">
               <v-autocomplete
-                :rules="rules"
                 label="Asignar padrino"
                 v-model="padrino"
                 :items="items_padrinos"
@@ -155,7 +150,6 @@
                 item-value="id"
                 id="suernames"
                 type="text"
-                required
                 outlined
                 dense
               />
