@@ -10,27 +10,28 @@
       <v-container>
         <v-form ref="form" v-model="valid" lazy-validation>
           <v-row justify="center" class="mt-4">
-            <v-col cols="3" class="my-0 py-1">
+            <v-col cols="4" class="my-0 py-1">
               <v-text-field v-model="names" dense :rules="rules" label="Nombres" color="primary" id="names" type="text" required outlined />
             </v-col>
             <v-col cols="3" class="my-0 py-1">
               <v-text-field v-model="suernames" dense :rules="rules" label="Apellidos" color="primary" id="suernames" type="text" required outlined />
             </v-col>
             <v-col cols="3" class="my-0 py-1">
-              <v-text-field v-model="age" dense :rules="rules" label="Edad" color="primary" id="suernames" type="number" required outlined />
-            </v-col>
-            <v-col cols="3" class="my-0 py-1">
               <v-text-field
+                label="Fecha de nacimiento"
                 v-model="birth_date"
-                dense
-                :rules="rules"
-                label="Cumpleaños"
+                format="DD-MM-YYYY"
                 color="primary"
+                :rules="rules"
                 id="suernames"
                 type="date"
                 required
                 outlined
+                dense
               />
+            </v-col>
+            <v-col cols="2" class="my-0 py-1">
+              <v-text-field v-model="age" dense :rules="rules" disabled label="Edad" color="primary" id="suernames" type="number" required outlined />
             </v-col>
             <v-col cols="3" class="my-0 py-1">
               <v-text-field
@@ -60,15 +61,28 @@
             </v-col>
             <v-col cols="3" class="my-0 py-1">
               <v-autocomplete
-                v-model="sueno"
-                :items="item_suenos"
+                :items="items_condicion"
+                v-model="condition"
+                label="Condición"
                 item-value="id"
                 item-text="name"
                 color="primary"
                 id="suernames"
-                label="Sueños"
                 type="text"
-                multiple
+                outlined
+                dense
+              />
+            </v-col>
+            <v-col cols="3" class="my-0 py-1">
+              <v-autocomplete
+                :items="items_eps"
+                v-model="eps"
+                item-value="id"
+                item-text="name"
+                color="primary"
+                id="suernames"
+                type="text"
+                label="Eps"
                 outlined
                 dense
               />
@@ -191,6 +205,8 @@
 
 <script>
 import { mapActions } from "vuex";
+import moment from "moment";
+
 export default {
   props: {
     paciente: Object,
@@ -213,9 +229,11 @@ export default {
       clinic_history: "",
       direction: "",
       education_level: "",
+      condition: "",
+      eps: "",
       funeral_insurance: "",
       gender: "",
-      sueno: "",
+
       mail: "",
       names: "",
       phone: "",
@@ -225,15 +243,35 @@ export default {
       padrino: "",
 
       id: "",
-      item_suenos: [],
+
       items_padrinos: [],
       items_familiares: [],
+      items_condicion: [],
+      items_eps: [],
+
       items: [{ text: "Femenino" }, { text: "Masculino" }, { text: "Otro" }],
 
       rules: [(v) => !!v || "Este campo es requerido"],
+      fecha_hoy: "",
     };
   },
+  watch: {
+    birth_date() {
+      let hoy = this.fecha_hoy.slice(6);
+      let edad = this.fecha_hoy.slice(6) - this.birth_date.slice(0, 4);
+      let mes = Number(this.fecha_hoy.slice(3, 5)) - Number(this.birth_date.slice(3, 5));
+
+      if (mes < 0 || (mes === 0 && Number(this.fecha_hoy.slice(0, 2)) < Number(this.birth_date.slice(8)))) {
+        edad--;
+      }
+      this.age = edad;
+    },
+  },
+
   async mounted() {
+    let fecha_actual = moment().locale("es");
+    this.fecha_hoy = fecha_actual.format("DD-MM-YYYY");
+    console.log("fecha _go", this.fecha_hoy);
     if (this.paciente.editar) {
       this.names = this.paciente.names;
       this.suernames = this.paciente.suernames;
@@ -255,28 +293,27 @@ export default {
       this.suernames = this.paciente.suernames;
       this.id = this.paciente.id;
     }
-    this.item_suenos = await this._getSuenos();
+
     const id = this.id;
-    let a = await this._getSuenosXPaciente({ id });
-    console.log(a);
 
     this.items_familiares = await this._getFamiliares();
+    this.items_condicion = await this._getConditions();
     this.items_padrinos = await this._getPadrinos();
-    console.log(this.items_familiares);
-    console.log(this.items_padrinos);
+    this.items_eps = await this._getEps();
   },
   destroyed() {
     this.paciente.editar = false;
   },
   methods: {
     ...mapActions({
-      _addSuenosXPaciente: "suenos/_addSuenosXPaciente",
       _getFamiliares: "familiares/_getFamiliares",
       _addPaciente: "pacientes/_addPaciente",
       _putPaciente: "pacientes/_putPaciente",
-      _getSuenos: "suenos/_getSuenos",
+
       _getPadrinos: "padrinos/_getPadrinos",
-      _getSuenosXPaciente: "suenos/_getSuenosXPaciente",
+
+      _getConditions: "condicion/_getConditions",
+      _getEps: "eps/_getEps",
     }),
     msj(text, color) {
       this.snackbar.estado = true;
@@ -287,32 +324,25 @@ export default {
       const data = {
         names: this.names,
         suernames: this.suernames,
-        Family_nucleus: "desert",
         treatment_start_date: this.treatment_start_date,
-        clinic_history: this.clinic_history,
         admission_date: this.admission_date,
-        age: this.age,
         birth_date: this.birth_date,
-        clinic_history: this.clinic_history,
+        nui: this.nui,
         direction: this.direction,
         education_level: this.education_level,
         funeral_insurance: this.funeral_insurance,
         gender: this.gender,
         mail: this.mail,
-        names: this.names,
-        nui: this.nui,
         phone: this.phone,
         suernames: this.suernames,
+        condition: this.condition,
+        eps: this.eps,
       };
       const id = this.id;
 
       if (this.$refs.form.validate()) {
         await this._putPaciente({ id, data });
-        const date = {
-          id_patient: this.id,
-          id_dreams: this.sueno,
-        };
-        await this._addSuenosXPaciente({ date });
+
         this.$refs.form.reset();
         this.msj("Paciente editado", "green");
         setTimeout(() => {
@@ -325,22 +355,19 @@ export default {
       const data = {
         names: this.names,
         suernames: this.suernames,
-        Family_nucleus: "desert",
         treatment_start_date: this.treatment_start_date,
-        clinic_history: this.clinic_history,
         admission_date: this.admission_date,
-        age: this.age,
         birth_date: this.birth_date,
-        clinic_history: this.clinic_history,
+        nui: this.nui,
         direction: this.direction,
         education_level: this.education_level,
         funeral_insurance: this.funeral_insurance,
         gender: this.gender,
         mail: this.mail,
-        names: this.names,
-        nui: this.nui,
         phone: this.phone,
         suernames: this.suernames,
+        condition: this.condition,
+        eps: this.eps,
       };
       if (this.$refs.form.validate()) {
         await this._addPaciente({ data });

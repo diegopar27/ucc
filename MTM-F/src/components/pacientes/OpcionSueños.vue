@@ -19,6 +19,21 @@
             <v-col cols="3" class="my-0 py-1">
               <v-text-field v-model="description" id="description" color="primary" :rules="rules" label="Descripción" required outlined dense />
             </v-col>
+            <v-col cols="3" class="my-0 py-1">
+              <v-autocomplete
+                :items="items_pacientes"
+                v-model="patient"
+                label="Pacientes"
+                item-value="id"
+                item-text="name"
+                color="primary"
+                id="suernames"
+                type="text"
+                multiple
+                outlined
+                dense
+              />
+            </v-col>
           </v-row>
         </v-form>
       </v-container>
@@ -58,12 +73,14 @@ export default {
       condition: "",
       cycle: "",
 
+      items_pacientes: [],
+
       id: "",
 
       rules: [(v) => !!v || "Este campo es requerido"],
     };
   },
-  mounted() {
+  async mounted() {
     if (this.suenos.editar) {
       this.types = this.suenos.types;
       this.name = this.suenos.name;
@@ -72,6 +89,7 @@ export default {
       this.cycle = this.suenos.cycle;
       this.id = this.suenos.id;
     }
+    this.items_pacientes = await this._getPacientes();
   },
   destroyed() {
     this.suenos.editar = false;
@@ -80,6 +98,7 @@ export default {
     ...mapActions({
       _addSuenos: "suenos/_addSuenos",
       _putSuenos: "suenos/_putSuenos",
+      _getPacientes: "pacientes/_getPacientes",
     }),
     msj(text, color) {
       this.snackbar.estado = true;
