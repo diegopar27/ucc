@@ -20,7 +20,7 @@ export default {
     async _getCondition({ commit }, { id }) {
       try {
         const RES = await postData({
-          url: `condition/${id}`,
+          url: `condition/${id}/`,
           header: {},
           method: "GET",
         });

@@ -139,7 +139,7 @@
             <v-col cols="4" class="my-0 py-1">
               <v-text-field v-model="nui" dense :rules="rules" label="Nui" color="primary" id="suernames" type="number" required outlined />
             </v-col>
-
+            <!-- 
             <v-col cols="3" class="my-0 py-1" v-if="paciente.editar">
               <v-autocomplete
                 :items="items_familiares"
@@ -167,7 +167,7 @@
                 outlined
                 dense
               />
-            </v-col>
+            </v-col> -->
           </v-row>
         </v-form>
       </v-container>
@@ -255,17 +255,15 @@ export default {
   async mounted() {
     let fecha_actual = moment().locale("es");
     this.fecha_hoy = fecha_actual.format("DD-MM-YYYY");
-
+    console.log("Paciente", this.paciente);
     if (this.paciente.editar) {
       this.names = this.paciente.names;
       this.suernames = this.paciente.suernames;
       this.Family_nucleus = "desert";
       this.treatment_start_date = this.paciente.treatment_start_date;
-
       this.admission_date = this.paciente.admission_date;
       this.age = this.paciente.age;
       this.birth_date = this.paciente.birth_date;
-
       this.direction = this.paciente.direction;
       this.education_level = this.paciente.education_level;
       this.funeral_insurance = this.paciente.funeral_insurance;
@@ -279,6 +277,7 @@ export default {
     }
 
     const id = this.id;
+    this.traerEps();
 
     this.items_familiares = await this._getFamiliares();
     this.items_condicion = await this._getConditions();
@@ -291,14 +290,28 @@ export default {
   methods: {
     ...mapActions({
       _getFamiliares: "familiares/_getFamiliares",
+      _getConditions: "condicion/_getConditions",
       _addPaciente: "pacientes/_addPaciente",
       _putPaciente: "pacientes/_putPaciente",
-
       _getPadrinos: "padrinos/_getPadrinos",
-
-      _getConditions: "condicion/_getConditions",
+      _getSueno: "suenos/_getSueno",
+      _getEpsId: "eps/_getEpsId",
       _getEps: "eps/_getEps",
+      _getCondition: "condicion/_getCondition",
     }),
+    async traerEps() {
+      const id = this.paciente.eps;
+      const eps = await this._getEpsId({ id });
+      this.eps = eps.id;
+      console.log("condicion", this.eps);
+      this.traerCondition();
+    },
+    async traerCondition() {
+      const id = this.paciente.condition;
+      let res = await this._getCondition({ id });
+      this.condition = res.id;
+      console.log(this.condition);
+    },
     msj(text, color) {
       this.snackbar.estado = true;
       this.snackbar.text = text;
@@ -323,7 +336,7 @@ export default {
         eps: this.eps,
       };
       const id = this.id;
-
+      console.log(data);
       if (this.$refs.form.validate()) {
         await this._putPaciente({ id, data });
 
@@ -350,7 +363,7 @@ export default {
         mail: this.mail,
         phone: this.phone,
         suernames: this.suernames,
-        condition: this.condition,
+        condition: this.condition.id,
         eps: this.eps,
       };
       if (this.$refs.form.validate()) {
