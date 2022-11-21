@@ -28,6 +28,12 @@
                 </template>
                 <span>Asignar Padrino</span>
               </v-tooltip>
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <v-icon small color="second" class="mr-2" v-bind="attrs" v-on="on" @click="asignarPatologia(item)"> mdi-briefcase-arrow-left-right </v-icon>
+                </template>
+                <span>Asignar Patologia</span>
+              </v-tooltip>
             </template>
           </v-data-table>
         </template>
@@ -38,6 +44,7 @@
     <SUENOS :suenos="suenosop" v-if="suenosop.estado"></SUENOS>
     <CONDITION :condicion="conditionop" v-if="conditionop.estado"></CONDITION>
     <ASIGNARPADRINO :asignar_padrino="asignar_padrino" v-if="asignar_padrino.estado"></ASIGNARPADRINO>
+    <ASIGNARPATOLOGIA :asignar_patologia="asignar_patologia" v-if="asignar_patologia.estado"></ASIGNARPATOLOGIA>
   </v-container>
 </template>
 <script>
@@ -46,6 +53,7 @@ import popapPaciente from "../components/pacientes/CardPacientes.vue";
 import OpcionPaciente from "../components/pacientes/OpcionPaciente.vue";
 import OpcionSueños from "../components/pacientes/OpcionSueños.vue";
 import asignarPadrino from "../components/padrinos/AsignarPadrino.vue";
+import asignarPatologia from "../components/patologias/AsignarPatologia.vue";
 import { mapActions } from "vuex";
 
 export default {
@@ -55,6 +63,7 @@ export default {
     SUENOS: OpcionSueños,
     CONDITION: OpcionCondicion,
     ASIGNARPADRINO: asignarPadrino,
+    ASIGNARPATOLOGIA: asignarPatologia,
   },
   data: () => ({
     search: "",
@@ -98,6 +107,9 @@ export default {
 
       { text: "Actions", value: "actions", sortable: false },
     ],
+    asignar_patologia: {
+      estado: false,
+    },
     asignar_padrino: {
       estado: false,
     },
@@ -126,6 +138,11 @@ export default {
       this.asignar_padrino.id = item.id;
       this.asignar_padrino.names = item.names;
       this.asignar_padrino.estado = true;
+    },
+    asignarPatologia(item) {
+      this.asignar_patologia.id = item.id;
+      this.asignar_patologia.names = item.names;
+      this.asignar_patologia.estado = true;
     },
     editPaciente(item) {
       this.pacienteop = {

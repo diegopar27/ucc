@@ -57,5 +57,33 @@ export default {
         console.error(error);
       }
     },
+    async _addPatologiaXPaciente({ commit }, { data }) {
+      try {
+        const RES = await postData({
+          url: `Pathologyxpatient/`,
+          header: {},
+          data,
+          method: "POST",
+        });
+        return RES;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async _getPatologiaXPaciente({ commit }, { id }) {
+      try {
+        console.log("este es el id", id);
+        const RES = await postData({
+          url: `Pathologyxpatient/${id}/`,
+          header: {},
+          method: "GET",
+        });
+
+        console.log("res", RES);
+        return RES;
+      } catch (error) {
+        console.error(error);
+      }
+    },
   },
 };

@@ -42,7 +42,6 @@ export default {
     links: [
       { text: "Inicio", route: "/dashboard" },
       { text: "Pacientes", route: "/paciente" },
-      { text: "Examenes", route: "/examenes" },
       { text: "Medicinas", route: "/medicinas" },
       { text: "Patologias", route: "/patologias" },
       { text: "Gestionar familiares", route: "/familiares" },
