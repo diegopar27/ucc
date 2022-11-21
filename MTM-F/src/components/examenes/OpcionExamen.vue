@@ -148,7 +148,7 @@ export default {
         state_exam: this.state_exam,
         history_exam: this.history_exam,
         reading_test: this.reading_test,
-        exam_date: this.condition,
+        exam_date: this.exam_date,
         number_of_exams: this.number_of_exams,
       };
       const id = this.id;
@@ -168,7 +168,7 @@ export default {
         state_exam: this.state_exam,
         history_exam: this.history_exam,
         reading_test: this.reading_test,
-        exam_date: this.condition,
+        exam_date: this.exam_date,
         number_of_exams: this.number_of_exams,
       };
       if (this.$refs.form.validate()) {

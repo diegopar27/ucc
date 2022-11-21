@@ -52,21 +52,14 @@ const routes = [
     },
   },
 
-  {     
-    path: "/familiares",     
-  name: "familiares",     
-  component: function () {
-       return import("../views/Familiares.vue");     
-      },   
-    },
-
   {
-    path: "/examenes",
-    name: "examenes",
+    path: "/familiares",
+    name: "familiares",
     component: function () {
-      return import("../views/Examenes.vue");
+      return import("../views/Familiares.vue");
     },
   },
+
   {
     path: "/eps",
     name: "eps",

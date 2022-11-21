@@ -1,42 +1,50 @@
 <template>
-  <v-container fluid class="fill-height">
-    <v-row justify="center">
-      <v-card shaped width="900">
-        <v-footer color="primary">
-          <h1 class="white--text">Examenes</h1>
-        </v-footer>
-        <v-row>
-          <v-col cols="4">
-            <v-text-field class="pt-4 pl-4" outlined dense v-model="search" label="Buscar" />
+  <v-dialog v-model="examen_pro.estado">
+    <v-card shaped>
+      <v-footer color="primary">
+        <h1 class="white--text">Examenes {{ examen_pro.name }}</h1>
+      </v-footer>
+      <v-container fluid class="fill-height">
+        <v-row justify="center">
+          <v-col cols="12">
+            <v-row>
+              <v-col cols="4">
+                <v-text-field class="pt-4 pl-4" outlined dense v-model="search" label="Buscar" />
+              </v-col>
+              <v-col cols="8" class="text-end">
+                <v-btn class="mt-4 mr-4" color="success" dark large @click="examenop.estado = true"> Crear examen </v-btn>
+              </v-col>
+            </v-row>
           </v-col>
-          <v-col cols="8" class="text-end">
-            <v-btn class="mt-4 mr-4" color="success" dark large @click="examenop.estado = true"> Crear examen </v-btn>
+          <v-col cols="12">
+            <template>
+              <v-data-table :search="search" :headers="headers" :items="examenes" item-key="id" :items-per-page="5" class="elevation-1">
+                <template v-slot:[`item.actions`]="{ item }">
+                  <v-icon small color="primary" class="mr-2" @click="verExamen(item)"> mdi-book </v-icon>
+                  <v-icon small color="warning" class="mr-2" @click="editExamen(item)"> mdi-pencil </v-icon>
+                </template>
+              </v-data-table>
+            </template>
           </v-col>
         </v-row>
-
-        <template>
-          <v-data-table :search="search" :headers="headers" :items="examenes" item-key="id" :items-per-page="5" class="elevation-1">
-            <template v-slot:[`item.actions`]="{ item }">
-              <v-icon small color="primary" class="mr-2" @click="verExamen(item)"> mdi-book </v-icon>
-              <v-icon small color="warning" class="mr-2" @click="editExamen(item)"> mdi-pencil </v-icon>
-            </template>
-          </v-data-table>
-        </template>
-      </v-card>
-    </v-row>
+      </v-container>
+    </v-card>
     <EXAMEN :examen="examen" v-if="examen.estado"></EXAMEN>
     <EXAMENOP :examen="examenop" v-if="examenop.estado"></EXAMENOP>
-  </v-container>
+  </v-dialog>
 </template>
 <script>
-import OpcionExamen from "../components/examenes/OpcionExamen.vue";
-import popapExamen from "../components/examenes/CardExamenes.vue";
+import OpcionExamen from "../examenes/OpcionExamen.vue";
+import popapExamen from "../examenes/CardExamenes.vue";
 import { mapActions } from "vuex";
 
 export default {
   components: {
     EXAMEN: popapExamen,
     EXAMENOP: OpcionExamen,
+  },
+  props: {
+    examen_pro: Object,
   },
   data: () => ({
     search: "",

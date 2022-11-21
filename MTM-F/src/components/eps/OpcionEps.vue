@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="eps.estado" max-width="900">
+  <v-dialog v-model="eps.estado" max-width="900" persistent> 
     <v-card>
       <v-footer color="primary" class="white--text">
         <h1>EPS {{ eps.name }}</h1>

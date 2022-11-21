@@ -2,7 +2,7 @@
   <v-dialog v-model="paciente.estado" max-width="600">
     <v-card>
       <v-footer color="primary" class="white--text">
-        <h1>Paciente {{ paciente.nombre }}</h1>
+        <h1>Paciente {{ paciente.name }}</h1>
         <v-icon class="ml-2" color="white" size="35">mdi-book</v-icon>
         <v-spacer> </v-spacer>
         <v-btn icon @click="paciente.estado = false"> <v-icon color="white">mdi-exit-run</v-icon></v-btn>
@@ -67,23 +67,38 @@
       <v-footer color="white" class="white--text py-6">
         <v-btn class="mx-auto"> Familiares </v-btn>
         <v-btn class="mx-auto"> Padrinos </v-btn>
-        <v-btn class="mx-auto" href="../views/Examenes#/Examenes"> Examenes </v-btn>
+        <v-btn class="mx-auto" @click="verExamen()"> Examenes </v-btn>
         <v-btn class="mx-auto"> Patologia </v-btn>
       </v-footer>
     </v-card>
+    <EXAMEN :examen_pro="examen_pro" v-if="examen_pro.estado"> </EXAMEN>
   </v-dialog>
 </template>
 
 <script>
+import examenOp from "../examenes/Examenes.vue";
 export default {
   props: {
     paciente: Object,
   },
+  components: {
+    EXAMEN: examenOp,
+  },
+  data() {
+    return {
+      examen_pro: {
+        estado: false,
+      },
+    };
+  },
+  mounted() {
+    console.log(this.paciente);
+  },
   methods: {
-    examen() {
-      this.paciente.estado = false;
-
-      console.log("eeeee");
+    verExamen() {
+      this.examen_pro.id_paciente = this.paciente.id;
+      this.examen_pro.name = this.paciente.names + " " + this.paciente.suernames;
+      this.examen_pro.estado = true;
     },
   },
 };

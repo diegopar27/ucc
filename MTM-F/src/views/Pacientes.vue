@@ -121,20 +121,7 @@ export default {
       this.pacienteop.editar = true;
     },
     verPaciente(item) {
-      this.paciente.familia = item.Family_nucleus;
-      this.paciente.ingreso = item.admission_date;
-      this.paciente.edad = item.age;
-      this.paciente.cumpleanos = item.birth_date;
-      this.paciente.historia_clinica = item.clinic_history;
-      this.paciente.direccion = item.direction;
-      this.paciente.educacion = item.education_level;
-      this.paciente.seguro = item.funeral_insurance;
-      this.paciente.genero = item.gender;
-      this.paciente.correo = item.mail;
-      this.paciente.nombre = item.names;
-      this.paciente.telefono = item.phone;
-      this.paciente.apellidos = item.suernames;
-
+      this.paciente = item;
       this.paciente.estado = true;
     },
   },

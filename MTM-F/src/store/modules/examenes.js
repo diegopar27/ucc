@@ -20,7 +20,7 @@ export default {
     async _getExamen({ commit }, { id }) {
       try {
         const RES = await postData({
-          url: `Exams/${id}`,
+          url: `Exams/${id}/`,
           header: {},
           method: "GET",
         });
