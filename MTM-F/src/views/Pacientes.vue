@@ -30,7 +30,9 @@
               </v-tooltip>
               <v-tooltip bottom>
                 <template v-slot:activator="{ on, attrs }">
-                  <v-icon small color="second" class="mr-2" v-bind="attrs" v-on="on" @click="asignarPatologia(item)"> mdi-briefcase-arrow-left-right </v-icon>
+                  <v-icon small color="second" class="mr-2" v-bind="attrs" v-on="on" @click="asignarPatologia(item)">
+                    mdi-briefcase-arrow-left-right
+                  </v-icon>
                 </template>
                 <span>Asignar Patologia</span>
               </v-tooltip>
@@ -105,7 +107,7 @@ export default {
         value: "direction",
       },
 
-      { text: "Actions", value: "actions", sortable: false },
+      { text: "Opción", align: "center", value: "actions", sortable: false },
     ],
     asignar_patologia: {
       estado: false,

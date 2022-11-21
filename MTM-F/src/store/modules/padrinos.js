@@ -73,7 +73,6 @@ export default {
     },
     async _getPadrinoXPaciente({ commit }, { id }) {
       try {
-        console.log("este es el id", id);
         const RES = await postData({
           url: `patientxgodfather/${id}/`,
           header: {},

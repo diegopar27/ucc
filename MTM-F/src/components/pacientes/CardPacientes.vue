@@ -16,7 +16,7 @@
           <v-col cols="4" class="my-0 py-1"><h3>EPS</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
             <h5>
-              <!-- {{ eps.name }} -->
+              {{ eps.name }}
             </h5>
           </v-col>
           <v-col cols="4" class="my-0 py-1"><h3>Fecha de nacimiento</h3> </v-col>
@@ -121,8 +121,7 @@ export default {
   },
   async mounted() {
     const id = this.paciente.id;
-    console.log(id);
-    // this.eps = await this._getEpsId({ id });
+    this.eps = await this._getEpsId({ id });
     console.log("eps", this.eps);
   },
   methods: {
