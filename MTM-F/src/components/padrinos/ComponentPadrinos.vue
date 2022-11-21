@@ -67,11 +67,11 @@ export default {
     const id = this.opcion_padrino.id_paciente;
     let a = await this._getPadrinoXPaciente({ id });
 
+    console.log("sssssssssssssssssssssssss",a);
     a.id_godfather.forEach(async (id, i) => {
       let res = await this._getPadrino({ id });
       this.padrinos.push(res);
     });
-    console.log(a);
   },
   methods: {
     ...mapActions({

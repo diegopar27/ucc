@@ -2,7 +2,7 @@
   <v-dialog v-model="paciente.estado" max-width="700">
     <v-card>
       <v-footer color="primary" class="white--text">
-        <h1>Paciente {{ paciente.name }}</h1>
+        <h1>Paciente {{ paciente.names }}</h1>
         <v-icon class="ml-2" color="white" size="35">mdi-book</v-icon>
         <v-spacer> </v-spacer>
         <v-btn icon @click="cerrarCardPacientes()"> <v-icon color="white">mdi-exit-run</v-icon></v-btn>
