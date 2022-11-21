@@ -139,7 +139,7 @@
             <v-col cols="4" class="my-0 py-1">
               <v-text-field v-model="nui" dense :rules="rules" label="Nui" color="primary" id="suernames" type="number" required outlined />
             </v-col>
-            <!-- 
+
             <v-col cols="3" class="my-0 py-1" v-if="paciente.editar">
               <v-autocomplete
                 :items="items_familiares"
@@ -167,7 +167,7 @@
                 outlined
                 dense
               />
-            </v-col> -->
+            </v-col>
           </v-row>
         </v-form>
       </v-container>
@@ -363,7 +363,7 @@ export default {
         mail: this.mail,
         phone: this.phone,
         suernames: this.suernames,
-        condition: this.condition.id,
+        condition: this.condition,
         eps: this.eps,
       };
       if (this.$refs.form.validate()) {
