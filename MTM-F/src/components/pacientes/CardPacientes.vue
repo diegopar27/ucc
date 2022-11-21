@@ -16,7 +16,7 @@
           <v-col cols="4" class="my-0 py-1"><h3>EPS</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
             <h5>
-              {{ eps.name }}
+              <!-- {{ eps.name }} -->
             </h5>
           </v-col>
           <v-col cols="4" class="my-0 py-1"><h3>Fecha de nacimiento</h3> </v-col>
@@ -66,16 +66,18 @@
       <v-divider class="mx-2 mt-2"></v-divider>
       <v-footer color="white" class="white--text py-6">
         <v-btn class="mx-auto"> Familiares </v-btn>
-        <v-btn class="mx-auto"> Padrinos </v-btn>
+        <v-btn class="mx-auto" @click="verPadrinos()"> Padrinos </v-btn>
         <v-btn class="mx-auto" @click="verExamen()"> Examenes </v-btn>
         <v-btn class="mx-auto"> Patologia </v-btn>
       </v-footer>
     </v-card>
     <EXAMEN :examen_pro="examen_pro" v-if="examen_pro.estado"> </EXAMEN>
+    <PADRINOS :opcion_padrino="opcion_padrino" v-if="opcion_padrino.estado"> </PADRINOS>
   </v-dialog>
 </template>
 
 <script>
+import opcionPadrinos from "../padrinos/ComponentPadrinos.vue";
 import examenOp from "../examenes/Examenes.vue";
 import { mapActions } from "vuex";
 import moment from "moment";
@@ -85,10 +87,14 @@ export default {
   },
   components: {
     EXAMEN: examenOp,
+    PADRINOS: opcionPadrinos,
   },
   data() {
     return {
       examen_pro: {
+        estado: false,
+      },
+      opcion_padrino: {
         estado: false,
       },
       eps: "",
@@ -110,7 +116,8 @@ export default {
   },
   async mounted() {
     const id = this.paciente.id;
-    this.eps = await this._getEpsId({ id });
+    console.log(id);
+    // this.eps = await this._getEpsId({ id });
     console.log("eps", this.eps);
   },
   methods: {
@@ -119,6 +126,11 @@ export default {
     }),
     cerrarCardPacientes() {
       this.paciente.estado = false;
+    },
+    verPadrinos() {
+      this.opcion_padrino.id_paciente = this.paciente.id;
+      this.opcion_padrino.names = this.paciente.names;
+      this.opcion_padrino.estado = true;
     },
     verExamen() {
       this.examen_pro.id_paciente = this.paciente.id;

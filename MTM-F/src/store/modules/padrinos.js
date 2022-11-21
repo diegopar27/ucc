@@ -20,11 +20,11 @@ export default {
     async _getPadrino({ commit }, { id }) {
       try {
         const RES = await postData({
-          url: `godfather/${id}`,
+          url: `godfather/${id}/`,
           header: {},
           method: "GET",
         });
-        console.log("res", RES);
+
         return RES;
       } catch (error) {
         console.error(error);
@@ -58,7 +58,7 @@ export default {
         console.error(error);
       }
     },
-    async _addPadrinoXPadrino({ commit }, { data }) {
+    async _addPadrinoXPaciente({ commit }, { data }) {
       try {
         const RES = await postData({
           url: `patientxgodfather/`,
@@ -66,6 +66,21 @@ export default {
           data,
           method: "POST",
         });
+        return RES;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async _getPadrinoXPaciente({ commit }, { id }) {
+      try {
+        console.log("este es el id", id);
+        const RES = await postData({
+          url: `patientxgodfather/${id}/`,
+          header: {},
+          method: "GET",
+        });
+
+        console.log("res", RES);
         return RES;
       } catch (error) {
         console.error(error);

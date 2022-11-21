@@ -94,7 +94,7 @@ export default {
 
   methods: {
     ...mapActions({
-      _addPadrinoXPadrino: "padrinos/_addPadrinoXPadrino",
+      _addPadrinoXPaciente: "padrinos/_addPadrinoXPaciente",
       _getPadrinos: "padrinos/_getPadrinos",
     }),
     msj(text, color) {
@@ -109,7 +109,7 @@ export default {
         id_patient: this.asignar_padrino.id,
       };
       if (this.$refs.form.validate()) {
-        await this._addPadrinoXPadrino({ data });
+        await this._addPadrinoXPaciente({ data });
         this.$refs.form.reset();
         this.msj("Padrino no asignado", "green");
         setTimeout(() => {
