@@ -131,6 +131,7 @@ export default {
       this.familiar.genero = item.gender;
       this.familiar.correo = item.mail;
       this.familiar.nombre = item.names;
+      this.familiar.occupation = item.occupation;
       this.familiar.telefono = item.phone;
       this.familiar.apellidos = item.surnames;
 

@@ -11,37 +11,37 @@
         <v-row justify="start">
           <v-col cols="4" class="my-0 py-1"><h3>Nombre</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
-            <h7> {{ familiar.nombre }} {{ familiar.apellidos }} </h7>
+            <h5> {{ familiar.nombre }} {{ familiar.apellidos }} </h5>
           </v-col>
           <v-col cols="4" class="my-0 py-1"><h3>Ocupación</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
-            <h7>
-              {{ familiar.cumpleanos }}
-            </h7>
+            <h5>
+              {{ familiar.occupation }}
+            </h5>
           </v-col>
           <v-col cols="4" class="my-0 py-1"><h3>Correo</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
-            <h7>
+            <h5>
               {{ familiar.correo }}
-            </h7>
+            </h5>
           </v-col>
           <v-col cols="4" class="my-0 py-1"><h3>Genero</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
-            <h7>
+            <h5>
               {{ familiar.genero }}
-            </h7>
+            </h5>
           </v-col>
           <v-col cols="4" class="my-0 py-1"><h3>Nivel educativo</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
-            <h7>
+            <h5>
               {{ familiar.educacion }}
-            </h7>
+            </h5>
           </v-col>
           <v-col cols="4" class="my-0 py-1"><h3>Dirección</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
-            <h7>
+            <h5>
               {{ familiar.direccion }}
-            </h7>
+            </h5>
           </v-col>
         </v-row>
       </v-container>
