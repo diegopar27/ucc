@@ -17,9 +17,6 @@
               <v-text-field v-model="surnames" dense :rules="rules" label="Apellidos" color="primary" id="surnames" type="text" required outlined />
             </v-col>
             <v-col cols="3" class="my-0 py-1">
-              <v-text-field v-model="age" dense :rules="rules" label="Edad" color="primary" id="age" type="number" required outlined />
-            </v-col>
-            <v-col cols="3" class="my-0 py-1">
               <v-text-field
                 v-model="birth_date"
                 dense
@@ -175,7 +172,7 @@ export default {
       comptetencies: "",
       id: "",
 
-      items: [{ text: "Femenino" }, { text: "Masculino" }],
+      items: [{ text: "Femenino" }, { text: "Masculino" }, { text: "Otros" }],
 
       rules: [(v) => !!v || "Este campo es requerido"],
     };

@@ -51,7 +51,7 @@ export default {
         text: "Apellido",
         align: "center",
         sortable: false,
-        value: "suernames",
+        value: "surnames",
       },
       {
         text: "Edad",
@@ -104,7 +104,7 @@ export default {
     }),
     editFamiliar(item) {
       this.familiarop.names = item.names;
-      this.familiarop.suernames = item.suernames;
+      this.familiarop.surnames = item.surnames;
       this.familiarop.age = item.age;
       this.familiarop.birth_date = item.birth_date;
       this.familiarop.direction = item.direction;

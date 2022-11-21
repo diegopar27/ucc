@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="paciente.estado" max-width="600">
+  <v-dialog v-model="paciente.estado" max-width="700">
     <v-card>
       <v-footer color="primary" class="white--text">
         <h1>Paciente {{ paciente.name }}</h1>
@@ -65,20 +65,22 @@
       </v-container>
       <v-divider class="mx-2 mt-2"></v-divider>
       <v-footer color="white" class="white--text py-6">
-        <v-btn class="mx-auto"> Familiares </v-btn>
-        <v-btn class="mx-auto" @click="verPadrinos()"> Padrinos </v-btn>
-        <v-btn class="mx-auto" @click="verExamen()"> Examenes </v-btn>
-        <v-btn class="mx-auto"> Patologia </v-btn>
+        <v-btn class="mx-auto" color="primary" @click="asignarFamiliar()"> Añadir familiares </v-btn>
+        <v-btn class="mx-auto" color="primary" @click="verPadrinos()"> Padrinos </v-btn>
+        <v-btn class="mx-auto" color="primary" @click="verExamen()"> Examenes </v-btn>
+        <v-btn class="mx-auto" color="primary"> Patologia </v-btn>
       </v-footer>
     </v-card>
     <EXAMEN :examen_pro="examen_pro" v-if="examen_pro.estado"> </EXAMEN>
     <PADRINOS :opcion_padrino="opcion_padrino" v-if="opcion_padrino.estado"> </PADRINOS>
+    <FAMILIAR :asignar_familia="asignar_familia" v-if="asignar_familia.estado"> </FAMILIAR>
   </v-dialog>
 </template>
 
 <script>
-import opcionPadrinos from "../padrinos/ComponentPadrinos.vue";
-import examenOp from "../examenes/Examenes.vue";
+import PADRINOS from "../padrinos/ComponentPadrinos.vue";
+import FAMILIAR from "../familiares/AsignarFamiliar.vue";
+import EXAMEN from "../examenes/Examenes.vue";
 import { mapActions } from "vuex";
 import moment from "moment";
 export default {
@@ -86,11 +88,15 @@ export default {
     paciente: Object,
   },
   components: {
-    EXAMEN: examenOp,
-    PADRINOS: opcionPadrinos,
+    EXAMEN,
+    PADRINOS,
+    FAMILIAR,
   },
   data() {
     return {
+      asignar_familia: {
+        estado: false,
+      },
       examen_pro: {
         estado: false,
       },
@@ -107,7 +113,6 @@ export default {
       let hoy = fecha_hoy.slice(6);
       let edad = fecha_hoy.slice(6) - this.paciente.birth_date.slice(0, 4);
       let mes = Number(fecha_hoy.slice(3, 5)) - Number(this.paciente.birth_date.slice(3, 5));
-
       if (mes < 0 || (mes === 0 && Number(fecha_hoy.slice(0, 2)) < Number(this.paciente.birth_date.slice(8)))) {
         edad--;
       }
@@ -124,6 +129,11 @@ export default {
     ...mapActions({
       _getEpsId: "eps/_getEpsId",
     }),
+    asignarFamiliar() {
+      this.asignar_familia.estado = true;
+      this.asignar_familia.id_paciente = this.paciente.id;
+      this.asignar_familia.names_paciente = this.paciente.names;
+    },
     cerrarCardPacientes() {
       this.paciente.estado = false;
     },
