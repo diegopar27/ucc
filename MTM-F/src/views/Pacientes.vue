@@ -36,6 +36,14 @@
                 </template>
                 <span>Asignar Patologia</span>
               </v-tooltip>
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <v-icon small color="green" class="mr-2" v-bind="attrs" v-on="on" @click="asignarFamiliar(item)">
+                    mdi-human-male-female-child
+                  </v-icon>
+                </template>
+                <span>Asignar familiar</span>
+              </v-tooltip>
             </template>
           </v-data-table>
         </template>
@@ -47,15 +55,17 @@
     <CONDITION :condicion="conditionop" v-if="conditionop.estado"></CONDITION>
     <ASIGNARPADRINO :asignar_padrino="asignar_padrino" v-if="asignar_padrino.estado"></ASIGNARPADRINO>
     <ASIGNARPATOLOGIA :asignar_patologia="asignar_patologia" v-if="asignar_patologia.estado"></ASIGNARPATOLOGIA>
+    <ASIGNARFAMILIAR :asignar_familiar="asignar_familiar" v-if="asignar_familiar.estado"></ASIGNARFAMILIAR>
   </v-container>
 </template>
 <script>
+import asignarPatologia from "../components/patologias/AsignarPatologia.vue";
+import ASIGNARFAMILIAR from "../components/familiares/AsignarFamiliar.vue";
 import OpcionCondicion from "../components/pacientes/OpcionCondicion.vue";
 import popapPaciente from "../components/pacientes/CardPacientes.vue";
 import OpcionPaciente from "../components/pacientes/OpcionPaciente.vue";
 import OpcionSueños from "../components/pacientes/OpcionSueños.vue";
 import asignarPadrino from "../components/padrinos/AsignarPadrino.vue";
-import asignarPatologia from "../components/patologias/AsignarPatologia.vue";
 import { mapActions } from "vuex";
 
 export default {
@@ -66,6 +76,7 @@ export default {
     CONDITION: OpcionCondicion,
     ASIGNARPADRINO: asignarPadrino,
     ASIGNARPATOLOGIA: asignarPatologia,
+    ASIGNARFAMILIAR,
   },
   data: () => ({
     search: "",
@@ -115,6 +126,9 @@ export default {
     asignar_padrino: {
       estado: false,
     },
+    asignar_familiar: {
+      estado: false,
+    },
     paciente: {
       estado: false,
     },
@@ -136,6 +150,11 @@ export default {
     ...mapActions({
       _getPacientes: "pacientes/_getPacientes",
     }),
+    asignarFamiliar(item) {
+      this.asignar_familiar.id = item.id;
+      this.asignar_familiar.names = item.names;
+      this.asignar_familiar.estado = true;
+    },
     asignarPaciente(item) {
       this.asignar_padrino.id = item.id;
       this.asignar_padrino.names = item.names;
