@@ -101,7 +101,7 @@ export default {
     const familiar_x = await this._getPacientesXFamily({ id_patient });
     console.log(familiar_x.id_family);
     const id = familiar_x.id_family;
-    // this.familiares = await this._getFamiliares();
+    // this.familiares = await this._getFamiliares()
     this.familiares.push(await this._getFamiliar({ id }));
     console.log(this.familiares);
   },
