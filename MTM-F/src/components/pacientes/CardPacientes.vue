@@ -74,12 +74,13 @@
         <v-btn class="mx-auto" color="primary" @click="asignarFamiliar()"> Añadir familiares </v-btn>
         <v-btn class="mx-auto" color="primary" @click="verPadrinos()"> Padrinos </v-btn>
         <v-btn class="mx-auto" color="primary" @click="verExamen()"> Examenes </v-btn>
-        <v-btn class="mx-auto" color="primary"> Patologia </v-btn>
+        <v-btn class="mx-auto" color="primary" @click="verPatologia()"> Patologia </v-btn>
       </v-footer>
     </v-card>
     <EXAMEN :examen_pro="examen_pro" v-if="examen_pro.estado"> </EXAMEN>
     <PADRINOS :opcion_padrino="opcion_padrino" v-if="opcion_padrino.estado"> </PADRINOS>
     <FAMILIAR :asignar_familia="asignar_familia" v-if="asignar_familia.estado"> </FAMILIAR>
+    <PATOLOGIA :opcion_patologia="opcion_patologia" v-if="opcion_patologia.estado"> </PATOLOGIA>
   </v-dialog>
 </template>
 
@@ -87,6 +88,7 @@
 import PADRINOS from "../padrinos/ComponentPadrinos.vue";
 import FAMILIAR from "../familiares/ListarFamiliar.vue";
 import EXAMEN from "../examenes/Examenes.vue";
+import PATOLOGIA from "../patologias/ComponentPatologias.vue";
 import { mapActions } from "vuex";
 import moment from "moment";
 export default {
@@ -97,6 +99,7 @@ export default {
     EXAMEN,
     PADRINOS,
     FAMILIAR,
+    PATOLOGIA,
   },
   data() {
     return {
@@ -107,6 +110,9 @@ export default {
         estado: false,
       },
       opcion_padrino: {
+        estado: false,
+      },
+      opcion_patologia: {
         estado: false,
       },
       eps: "",
@@ -153,6 +159,11 @@ export default {
       this.examen_pro.id_paciente = this.paciente.id;
       this.examen_pro.name = this.paciente.names + " " + this.paciente.suernames;
       this.examen_pro.estado = true;
+    },
+    verPatologia() {
+      this.opcion_patologia.id_patient = this.paciente.id;
+      this.opcion_patologia.name = this.paciente.names + " " + this.paciente.suernames;
+      this.opcion_patologia.estado = true;
     },
   },
 };

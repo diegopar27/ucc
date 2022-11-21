@@ -87,18 +87,7 @@ export default {
       fecha_hoy: "",
     };
   },
-  watch: {
-    birth_date() {
-      let hoy = this.fecha_hoy.slice(6);
-      let edad = this.fecha_hoy.slice(6) - this.birth_date.slice(0, 4);
-      let mes = Number(this.fecha_hoy.slice(3, 5)) - Number(this.birth_date.slice(3, 5));
 
-      if (mes < 0 || (mes === 0 && Number(this.fecha_hoy.slice(0, 2)) < Number(this.birth_date.slice(8)))) {
-        edad--;
-      }
-      this.age = edad;
-    },
-  },
 
   async mounted() {
     let fecha_actual = moment().locale("es");
@@ -127,7 +116,9 @@ export default {
         id_patient: this.asignar_patologia.id,
         id_pathology: this.id_pathology,
         id_medicine: this.id_medicine,
-        date: this.date,
+        date: moment().format("YYYY-MM-DD")
+
+
       };
       if (this.$refs.form.validate()) {
         await this._addPatologiaXPaciente({ data });

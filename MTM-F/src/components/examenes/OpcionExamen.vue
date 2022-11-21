@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="examen.estado" max-width="900">
+  <v-dialog v-model="examen.estado" max-width="900" persistent>
     <v-card>
       <v-footer color="primary" class="white--text">
         <h1>Examen</h1>
@@ -165,6 +165,7 @@ export default {
     async crearExamen() {
       if (this.examen.editar) return this.editarExamen();
       const data = {
+        idpatient_x_pathology: this.idpatient_x_pathology,
         state_exam: this.state_exam,
         history_exam: this.history_exam,
         reading_test: this.reading_test,

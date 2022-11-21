@@ -11,24 +11,24 @@
         <v-row justify="start">
           <v-col cols="3" class="my-0 py-1"><h3>Estado examen</h3> </v-col>
           <v-col cols="9" class="my-0 py-1">
-            <h7> {{ paciente_x_examen.estado_examen }} </h7>
+            <h7> {{ examen.estado_examen }} </h7>
           </v-col>
           <v-col cols="3" class="my-0 py-1"><h3>Historia examen</h3> </v-col>
           <v-col cols="9" class="my-0 py-1">
             <h7>
-              {{ paciente_x_examen.historia_examen }}
+              {{ examen.historia_examen }}
             </h7>
           </v-col>
           <v-col cols="3" class="my-0 py-1"><h3>Lectura examen</h3> </v-col>
           <v-col cols="9" class="my-0 py-1">
             <h7>
-              {{ paciente_x_examen.lectura_examen }}
+              {{ examen.lectura_examen }}
             </h7>
           </v-col>
           <v-col cols="3" class="my-0 py-1"><h3>Fecha examen</h3> </v-col>
           <v-col cols="9" class="my-0 py-1">
             <h7>
-              {{ paciente_x_examen.fecha_examen }}
+              {{ examen.fecha_examen }}
             </h7>
           </v-col>
           <v-col cols="3" class="my-0 py-1"><h3>Numero examenes</h3> </v-col>

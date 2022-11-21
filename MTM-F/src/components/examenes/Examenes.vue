@@ -1,8 +1,11 @@
 <template>
-  <v-dialog v-model="examen_pro.estado">
+  <v-dialog v-model="examen_pro.estado" persistent>
     <v-card shaped>
-      <v-footer color="primary">
-        <h1 class="white--text">Examenes {{ examen_pro.name }}</h1>
+      <v-footer color="primary" class="white--text">
+        <h1>Examenes {{ examen_pro.name }}</h1>
+        <v-icon class="ml-2" color="white" size="35">mdi-book</v-icon>
+        <v-spacer> </v-spacer>
+        <v-btn icon @click="examen_pro.estado = false"> <v-icon color="white">mdi-exit-run</v-icon></v-btn>
       </v-footer>
       <v-container fluid class="fill-height">
         <v-row justify="center">
