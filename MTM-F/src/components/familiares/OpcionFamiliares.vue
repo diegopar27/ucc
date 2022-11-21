@@ -203,6 +203,7 @@ export default {
     ...mapActions({
       _addFamiliar: "familiares/_addFamiliar",
       _putFamiliar: "familiares/_putFamiliar",
+      _addPacientexFamily: "paciente/_addPacientexFamily",
     }),
     msj(text, color) {
       this.snackbar.estado = true;
@@ -256,7 +257,24 @@ export default {
         nui: this.nui,
       };
       if (this.$refs.form.validate()) {
-        console.log(data);
+        await this._addFamiliar({ data });
+        await this._addFamiliar({ data });
+        this.$refs.form.reset();
+        this.msj("Familiar registrado", "green");
+        setTimeout(() => {
+          this.familiar.estado = false;
+        }, 1000);
+      } else this.msj("Ocurrio un problema", "red");
+    },
+    async crearPacienteXfamilias() {
+      const data = {
+        relationship: this.relationship,
+        carer: this.carer,
+        family_nucleus: this.family_nucleus,
+        id_patient: this.id_patient,
+        id_family: this.id_family,
+      };
+      if (this.$refs.form.validate()) {
         await this._addFamiliar({ data });
         this.$refs.form.reset();
         this.msj("Familiar registrado", "green");

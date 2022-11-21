@@ -58,5 +58,18 @@ export default {
         console.error(error);
       }
     },
+    async _addPacientexFamily({ commit }, { data }) {
+      try {
+        const RES = await postData({
+          url: `patientxfamily/`,
+          header: {},
+          data,
+          method: "POST",
+        });
+        return RES;
+      } catch (error) {
+        console.error(error);
+      }
+    },
   },
 };

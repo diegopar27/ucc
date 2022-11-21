@@ -134,7 +134,6 @@ export default {
       this.familiar.occupation = item.occupation;
       this.familiar.telefono = item.phone;
       this.familiar.apellidos = item.surnames;
-
       this.familiar.estado = true;
     },
   },
