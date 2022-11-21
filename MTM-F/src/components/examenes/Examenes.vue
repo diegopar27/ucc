@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="examen_pro.estado" persistent>
+  <v-dialog v-model="examen_pro.estado" max-width="800" persistent >
     <v-card shaped>
       <v-footer color="primary" class="white--text">
         <h1>Examenes {{ examen_pro.name }}</h1>
@@ -21,7 +21,7 @@
           </v-col>
           <v-col cols="12">
             <template>
-              <v-data-table :search="search" :headers="headers" :items="examenes" item-key="id" :items-per-page="5" class="elevation-1">
+              <v-data-table :search="search" :headers="headers" :items="examenes_paci" item-key="id" :items-per-page="5" class="elevation-1">
                 <template v-slot:[`item.actions`]="{ item }">
                   <v-icon small color="primary" class="mr-2" @click="verExamen(item)"> mdi-book </v-icon>
                   <v-icon small color="warning" class="mr-2" @click="editExamen(item)"> mdi-pencil </v-icon>
@@ -91,15 +91,22 @@ export default {
     examenop: {
       estado: false,
     },
-    examenes: [],
+    examenes_paci: [],
   }),
   async mounted() {
-    this.examenes = await this._getExamenes();
-    console.log(this.examenes);
+    console.log("rrr", this.examen_pro.id_paciente);
+    // this.examenes_paci = await this._getExamen(this.examen_pro.id_paciente);
+    // id_patient
+    // this.examenes_paci = await this._getPatologiaXPaciente(this.examen_pro.id_paciente);
+    console.log("sss", this.examenes_paci);
+
+    const id_patient = this.examen_pro.id_paciente;
+    let a = await this._getPatologiaXPaciente({id_patient});
+    console.log("patologiaxpaciente", a);
   },
   methods: {
     ...mapActions({
-      _getExamenes: "examenes/_getExamenes",
+      _getPatologiaXPaciente: "patologias/_getPatologiaXPaciente",
     }),
     editExamen(item) {
       this.examenop.state_exam = item.state_exam;

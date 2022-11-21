@@ -1,11 +1,11 @@
 <template>
-  <v-dialog v-model="opcion_patologia.estado">
+  <v-dialog v-model="opcion_patologia.estado" max-width="800" persistent>
     <v-card>
       <v-footer color="primary" class="white--text">
         <h1>Patologia de {{ opcion_patologia.name }}</h1>
         <v-icon class="ml-2" color="white" size="35">mdi-book</v-icon>
         <v-spacer> </v-spacer>
-        <v-btn icon @click= "opcion_patologia.estado = false"> <v-icon color="white">mdi-exit-run</v-icon></v-btn>
+        <v-btn icon @click="opcion_patologia.estado = false"> <v-icon color="white">mdi-exit-run</v-icon></v-btn>
       </v-footer>
       <v-text-field class="pt-4 px-4" outlined dense v-model="search" label="Buscar" />
       <template>
@@ -59,7 +59,13 @@ export default {
   }),
   async mounted() {
     const id_patient = this.opcion_patologia.id_patient;
+    console.log(id_patient);
     let a = await this._getPatologiaXPaciente({ id_patient });
+    console.log(a, "xxxx");
+    a.id_pathology.forEach(async (id) => {
+      this.patolgias.push(await this._getPatologia({ id }));
+    });
+    const id = this.id_patient;
 
     // a.id_pathology.forEach(async (id, i) => {
     //   let res = await this._getPatologia({ id });

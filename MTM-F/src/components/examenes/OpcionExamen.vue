@@ -102,6 +102,7 @@ import { mapActions } from "vuex";
 export default {
   props: {
     examen: Object,
+    examen_pro: Object, 
   },
   data() {
     return {
@@ -129,6 +130,7 @@ export default {
       this.number_of_exams = this.examen.number_of_exams;
       this.id = this.examen.id;
     }
+    console.log("dddd", this.examen_pro.id_paciente)
   },
   destroyed() {
     this.examen.editar = false;
@@ -137,6 +139,7 @@ export default {
     ...mapActions({
       _addExamen: "examenes/_addExamen",
       _putExamen: "examenes/_putExamen",
+      _getPatologiaXPaciente: "patologias/_getPatologiaXPaciente",
     }),
     msj(text, color) {
       this.snackbar.estado = true;
@@ -165,7 +168,7 @@ export default {
     async crearExamen() {
       if (this.examen.editar) return this.editarExamen();
       const data = {
-        idpatient_x_pathology: this.idpatient_x_pathology,
+        idpatient_x_pathology: this.id_paciente,
         state_exam: this.state_exam,
         history_exam: this.history_exam,
         reading_test: this.reading_test,
