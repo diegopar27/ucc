@@ -5,61 +5,61 @@
         <h1>Paciente {{ paciente.name }}</h1>
         <v-icon class="ml-2" color="white" size="35">mdi-book</v-icon>
         <v-spacer> </v-spacer>
-        <v-btn icon @click="paciente.estado = false"> <v-icon color="white">mdi-exit-run</v-icon></v-btn>
+        <v-btn icon @click="cerrarCardPacientes()"> <v-icon color="white">mdi-exit-run</v-icon></v-btn>
       </v-footer>
       <v-container>
         <v-row justify="start">
           <v-col cols="4" class="my-0 py-1"><h3>Nombre</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
-            <h7> {{ paciente.nombre }} {{ paciente.apellidos }} </h7>
+            <h5>{{ paciente.nombre }} {{ paciente.apellidos }}</h5>
           </v-col>
           <v-col cols="4" class="my-0 py-1"><h3>Nucleo familiar</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
-            <h7>
+            <h5>
               {{ paciente.familia }}
-            </h7>
+            </h5>
           </v-col>
-          <v-col cols="4" class="my-0 py-1"><h3>Cumpleaños</h3> </v-col>
+          <v-col cols="4" class="my-0 py-1"><h3>Fecha nacimiento</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
-            <h7>
+            <h5>
               {{ paciente.cumpleanos }}
-            </h7>
+            </h5>
           </v-col>
           <v-col cols="4" class="my-0 py-1"><h3>Edad</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
-            <h7>
+            <h5>
               {{ paciente.edad }}
-            </h7>
+            </h5>
           </v-col>
           <v-col cols="4" class="my-0 py-1"><h3>Correo</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
-            <h7>
+            <h5>
               {{ paciente.correo }}
-            </h7>
+            </h5>
           </v-col>
           <v-col cols="4" class="my-0 py-1"><h3>Seguro finerario</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
-            <h7>
+            <h5>
               {{ paciente.seguro ? "Tiene" : "No tiene" }}
-            </h7>
+            </h5>
           </v-col>
           <v-col cols="4" class="my-0 py-1"><h3>Genero</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
-            <h7>
+            <h5>
               {{ paciente.genero }}
-            </h7>
+            </h5>
           </v-col>
           <v-col cols="4" class="my-0 py-1"><h3>Nivel educativo</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
-            <h7>
+            <h5>
               {{ paciente.educacion }}
-            </h7>
+            </h5>
           </v-col>
           <v-col cols="4" class="my-0 py-1"><h3>Dirección</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
-            <h7>
+            <h5>
               {{ paciente.direccion }}
-            </h7>
+            </h5>
           </v-col>
         </v-row>
       </v-container>
@@ -92,9 +92,13 @@ export default {
     };
   },
   mounted() {
-    console.log(this.paciente);
+    console.log("mounted", this.paciente);
   },
   methods: {
+    cerrarCardPacientes() {
+      console.log("fdksajd", this.paciente);
+      this.paciente.estado = false;
+    },
     verExamen() {
       this.examen_pro.id_paciente = this.paciente.id;
       this.examen_pro.name = this.paciente.names + " " + this.paciente.suernames;

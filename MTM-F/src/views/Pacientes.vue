@@ -26,7 +26,7 @@
         </template>
       </v-card>
     </v-row>
-    <PACIENTE :paciente="paciente" v-if="paciente.estado"></PACIENTE>
+    <PACIENTE :paciente="paciente"></PACIENTE>
     <PACIENTEOP :paciente="pacienteop" v-if="pacienteop.estado"></PACIENTEOP>
     <SUENOS :suenos="suenosop" v-if="suenosop.estado"></SUENOS>
     <CONDITION :condicion="conditionop" v-if="conditionop.estado"></CONDITION>
@@ -116,12 +116,48 @@ export default {
       _getPacientes: "pacientes/_getPacientes",
     }),
     editPaciente(item) {
-      this.pacienteop = item;
+      this.pacienteop = {
+        admission_date: item.admission_date,
+        birth_date: item.birth_date,
+        condition: item.condition,
+        create_at: item.create_at,
+        direction: item.direction,
+        education_level: item.education_level,
+        eps: item.eps,
+        estado: item.estado,
+        funeral_insurance: item.funeral_insurance,
+        gender: item.gender,
+        id: item.id,
+        mail: item.mail,
+        names: item.names,
+        nui: item.nui,
+        phone: item.phone,
+        suernames: item.suernames,
+        treatment_start_date: item.treatment_start_date,
+        editar: true,
+      };
       this.pacienteop.estado = true;
-      this.pacienteop.editar = true;
     },
     verPaciente(item) {
-      this.paciente = item;
+      this.paciente = {
+        admission_date: item.admission_date,
+        birth_date: item.birth_date,
+        condition: item.condition,
+        create_at: item.create_at,
+        direction: item.direction,
+        education_level: item.education_level,
+        eps: item.eps,
+        estado: item.estado,
+        funeral_insurance: item.funeral_insurance,
+        gender: item.gender,
+        id: item.id,
+        mail: item.mail,
+        names: item.names,
+        nui: item.nui,
+        phone: item.phone,
+        suernames: item.suernames,
+        treatment_start_date: item.treatment_start_date,
+      };
       this.paciente.estado = true;
     },
   },

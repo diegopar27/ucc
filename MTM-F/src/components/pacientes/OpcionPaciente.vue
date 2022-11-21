@@ -2,7 +2,7 @@
   <v-dialog v-model="paciente.estado" max-width="900" persistent>
     <v-card>
       <v-footer color="primary" class="white--text">
-        <h1>Paciente {{ paciente.nombre }}</h1>
+        <h1>Paciente {{ paciente.names }}</h1>
         <v-icon class="ml-2" color="white" size="35">mdi-book</v-icon>
         <v-spacer> </v-spacer>
         <v-btn icon @click="paciente.estado = false"> <v-icon color="white">mdi-exit-run</v-icon></v-btn>
@@ -117,7 +117,7 @@
             <v-col cols="3" class="my-0 py-1">
               <v-text-field v-model="mail" dense :rules="rules" label="Correo" color="primary" id="suernames" type="email" required outlined />
             </v-col>
-            <v-col cols="6" class="my-0 py-1">
+            <v-col cols="3" class="my-0 py-1">
               <v-text-field v-model="direction" dense :rules="rules" label="Dirección" color="primary" id="suernames" type="text" required outlined />
             </v-col>
             <v-col cols="4" class="my-0 py-1">
@@ -140,7 +140,7 @@
               <v-text-field v-model="nui" dense :rules="rules" label="Nui" color="primary" id="suernames" type="number" required outlined />
             </v-col>
 
-            <v-col cols="6" class="my-0 py-1">
+            <v-col cols="3" class="my-0 py-1" v-if="paciente.editar">
               <v-autocomplete
                 :items="items_familiares"
                 label="Asignar familiar"
@@ -154,7 +154,7 @@
                 dense
               />
             </v-col>
-            <v-col cols="6" class="my-0 py-1">
+            <v-col cols="6" class="my-0 py-1" v-if="paciente.editar">
               <v-autocomplete
                 label="Asignar padrino"
                 v-model="padrino"
@@ -166,20 +166,6 @@
                 type="text"
                 outlined
                 dense
-              />
-            </v-col>
-            <v-col cols="12" class="my-0 py-1">
-              <v-textarea
-                v-model="clinic_history"
-                dense
-                :rules="rules"
-                rows="3"
-                label="Historia clinica"
-                color="primary"
-                id="suernames"
-                type="text"
-                required
-                outlined
               />
             </v-col>
           </v-row>
@@ -222,11 +208,9 @@ export default {
       suernames: "",
       Family_nucleus: "",
       treatment_start_date: "",
-      clinic_history: "",
       admission_date: "",
       age: "",
       birth_date: "",
-      clinic_history: "",
       direction: "",
       education_level: "",
       condition: "",
@@ -271,17 +255,17 @@ export default {
   async mounted() {
     let fecha_actual = moment().locale("es");
     this.fecha_hoy = fecha_actual.format("DD-MM-YYYY");
-    console.log("fecha _go", this.fecha_hoy);
+
     if (this.paciente.editar) {
       this.names = this.paciente.names;
       this.suernames = this.paciente.suernames;
       this.Family_nucleus = "desert";
       this.treatment_start_date = this.paciente.treatment_start_date;
-      this.clinic_history = this.paciente.clinic_history;
+
       this.admission_date = this.paciente.admission_date;
       this.age = this.paciente.age;
       this.birth_date = this.paciente.birth_date;
-      this.clinic_history = this.paciente.clinic_history;
+
       this.direction = this.paciente.direction;
       this.education_level = this.paciente.education_level;
       this.funeral_insurance = this.paciente.funeral_insurance;

@@ -11,7 +11,6 @@ import tratamiento from "./modules/tratamiento";
 import patologias from "./modules/patologias";
 import familiares from "./modules/familiares";
 import condicion from "./modules/condicion";
-import eps from "./modules/eps";
 export default new Vuex.Store({
   state: {},
   getters: {},
@@ -28,6 +27,5 @@ export default new Vuex.Store({
     tratamiento,
     patologias,
     condicion,
-    eps,
   },
 });
