@@ -134,7 +134,8 @@ export default {
   },
   async mounted() {
     const patient = this.paciente.id;
-    this.eps = await this._getEpsId({ patient });
+    const id = this.paciente.eps;
+    this.eps = await this._getEpsId({ id });
     this.suenos = await this._getSueno({ patient });
   },
   methods: {
