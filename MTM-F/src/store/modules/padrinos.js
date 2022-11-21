@@ -58,5 +58,18 @@ export default {
         console.error(error);
       }
     },
+    async _addPadrinoXPadrino({ commit }, { data }) {
+      try {
+        const RES = await postData({
+          url: `patientxgodfather/`,
+          header: {},
+          data,
+          method: "POST",
+        });
+        return RES;
+      } catch (error) {
+        console.error(error);
+      }
+    },
   },
 };

@@ -17,9 +17,6 @@
               <v-text-field v-model="surname" dense :rules="rules" label="Apellidos" color="primary" id="surname" type="text" required outlined />
             </v-col>
             <v-col cols="3" class="my-0 py-1">
-              <v-text-field v-model="age" dense :rules="rules" label="Edad" color="primary" id="surname" type="number" required outlined />
-            </v-col>
-            <v-col cols="3" class="my-0 py-1">
               <v-text-field v-model="stratum" dense :rules="rules" label="Extrato" color="primary" id="surname" type="number" required outlined />
             </v-col>
             <v-col cols="3" class="my-0 py-1">
@@ -149,48 +146,46 @@ export default {
         estado: false,
       },
 
-      godfather_type: "",
-      surname: "",
-      Family_nucleus: "",
-      date_joined: "",
-      age: "",
-      stratum: "",
-      direction: "",
-      education_level: "",
-      funeral_insurance: "",
-      time_sponsoring: "",
-      gender: "",
-      mail: "",
-      name: "",
-      phone: "",
-      department: "",
-      city: "",
-
       id: "",
+      date_joined: "",
+      name: "",
+      surname: "",
+      godfather_type: "",
+      gender: "",
+      education_level: "",
+      phone: "",
+      direction: "",
+      city: "",
+      department: "",
+      mail: "",
+      time_sponsoring: "",
+      stratum: "",
+      create_at: "",
 
-      items: [{ text: "Femenino" }, { text: "Masculino" }],
+      items: [{ text: "Femenino" }, { text: "Masculino" }, { text: "Otro" }],
       items_type: [{ text: "Natural" }, { text: "Juridico" }],
 
       rules: [(v) => !!v || "Este campo es requerido"],
     };
   },
   mounted() {
+    console.log("padrino", this.padrino);
     if (this.padrino.editar) {
-      
-      this.age = this.padrino.age;
-      this.city = this.padrino.city;
+      this.id = this.padrino.id;
       this.date_joined = this.padrino.date_joined;
-      this.department = this.padrino.department;
-      this.direction = this.padrino.direction;
-      this.education_level = this.padrino.education_level;
-      this.gender = this.padrino.gender;
-      this.godfather_type = this.padrino.godfather_type;
-      this.mail = this.padrino.mail;
       this.name = this.padrino.name;
-      this.phone = this.padrino.phone;
-      this.stratum = this.padrino.stratum;
       this.surname = this.padrino.surname;
+      this.godfather_type = this.padrino.godfather_type;
+      this.gender = this.padrino.gender;
+      this.education_level = this.padrino.education_level;
+      this.phone = this.padrino.phone;
+      this.direction = this.padrino.direction;
+      this.city = this.padrino.city;
+      this.department = this.padrino.department;
+      this.mail = this.padrino.mail;
       this.time_sponsoring = this.padrino.time_sponsoring;
+      this.stratum = this.padrino.stratum;
+      this.create_at = this.padrino.create_at;
     }
   },
   destroyed() {
@@ -208,7 +203,6 @@ export default {
     },
     async editarPadrino() {
       const data = {
-        age: this.age,
         city: this.city,
         date_joined: this.date_joined,
         department: this.department,
@@ -224,7 +218,6 @@ export default {
         time_sponsoring: this.time_sponsoring,
       };
       const id = this.padrino.id;
-      
 
       if (this.$refs.form.validate()) {
         await this._putPadrino({ id, data });
@@ -238,7 +231,6 @@ export default {
     async crearPadrino() {
       if (this.padrino.editar) return this.editarPadrino();
       const data = {
-        age: this.age,
         city: this.city,
         date_joined: this.date_joined,
         department: this.department,

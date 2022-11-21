@@ -20,7 +20,7 @@ export default {
     async _getEpsId({ commit }, { id }) {
       try {
         const RES = await postData({
-          url: `eps/${id}`,
+          url: `eps/${id}/`,
           header: {},
           method: "GET",
         });

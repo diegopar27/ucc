@@ -11,54 +11,54 @@
         <v-row justify="start">
           <v-col cols="4" class="my-0 py-1"><h3>Nombre</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
-            <h5>{{ paciente.nombre }} {{ paciente.apellidos }}</h5>
+            <h5>{{ paciente.names }} {{ paciente.suernames }}</h5>
           </v-col>
-          <v-col cols="4" class="my-0 py-1"><h3>Nucleo familiar</h3> </v-col>
+          <v-col cols="4" class="my-0 py-1"><h3>EPS</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
             <h5>
-              {{ paciente.familia }}
+              {{ eps.name }}
             </h5>
           </v-col>
-          <v-col cols="4" class="my-0 py-1"><h3>Fecha nacimiento</h3> </v-col>
+          <v-col cols="4" class="my-0 py-1"><h3>Fecha de nacimiento</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
             <h5>
-              {{ paciente.cumpleanos }}
+              {{ paciente.birth_date }}
             </h5>
           </v-col>
           <v-col cols="4" class="my-0 py-1"><h3>Edad</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
             <h5>
-              {{ paciente.edad }}
+              {{ edad }}
             </h5>
           </v-col>
           <v-col cols="4" class="my-0 py-1"><h3>Correo</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
             <h5>
-              {{ paciente.correo }}
+              {{ paciente.mail }}
             </h5>
           </v-col>
           <v-col cols="4" class="my-0 py-1"><h3>Seguro finerario</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
             <h5>
-              {{ paciente.seguro ? "Tiene" : "No tiene" }}
+              {{ paciente.funeral_insurance ? "Tiene" : "No tiene" }}
             </h5>
           </v-col>
           <v-col cols="4" class="my-0 py-1"><h3>Genero</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
             <h5>
-              {{ paciente.genero }}
+              {{ paciente.gender }}
             </h5>
           </v-col>
           <v-col cols="4" class="my-0 py-1"><h3>Nivel educativo</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
             <h5>
-              {{ paciente.educacion }}
+              {{ paciente.education_level }}
             </h5>
           </v-col>
           <v-col cols="4" class="my-0 py-1"><h3>Dirección</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
             <h5>
-              {{ paciente.direccion }}
+              {{ paciente.direction }}
             </h5>
           </v-col>
         </v-row>
@@ -77,6 +77,8 @@
 
 <script>
 import examenOp from "../examenes/Examenes.vue";
+import { mapActions } from "vuex";
+import moment from "moment";
 export default {
   props: {
     paciente: Object,
@@ -89,14 +91,33 @@ export default {
       examen_pro: {
         estado: false,
       },
+      eps: "",
     };
   },
-  mounted() {
-    console.log("mounted", this.paciente);
+  computed: {
+    edad() {
+      let fecha_actual = moment().locale("es");
+      let fecha_hoy = fecha_actual.format("DD-MM-YYYY");
+      let hoy = fecha_hoy.slice(6);
+      let edad = fecha_hoy.slice(6) - this.paciente.birth_date.slice(0, 4);
+      let mes = Number(fecha_hoy.slice(3, 5)) - Number(this.paciente.birth_date.slice(3, 5));
+
+      if (mes < 0 || (mes === 0 && Number(fecha_hoy.slice(0, 2)) < Number(this.paciente.birth_date.slice(8)))) {
+        edad--;
+      }
+      return edad;
+    },
+  },
+  async mounted() {
+    const id = this.paciente.id;
+    this.eps = await this._getEpsId({ id });
+    console.log("eps", this.eps);
   },
   methods: {
+    ...mapActions({
+      _getEpsId: "eps/_getEpsId",
+    }),
     cerrarCardPacientes() {
-      console.log("fdksajd", this.paciente);
       this.paciente.estado = false;
     },
     verExamen() {

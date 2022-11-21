@@ -54,12 +54,6 @@ export default {
         value: "surname",
       },
       {
-        text: "Edad",
-        align: "center",
-        sortable: false,
-        value: "age",
-      },
-      {
         text: "Email",
         align: "center",
         sortable: false,
@@ -102,40 +96,41 @@ export default {
       _getPadrinos: "padrinos/_getPadrinos",
     }),
     editPadrino(item) {
-      this.padrinoop.age = item.age;
-      this.padrinoop.city = item.city;
-      this.padrinoop.date_joined = item.date_joined;
-      this.padrinoop.department = item.department;
-      this.padrinoop.direction = item.direction;
-      this.padrinoop.education_level = item.education_level;
-      this.padrinoop.gender = item.gender;
-      this.padrinoop.godfather_type = item.godfather_type;
-      this.padrinoop.mail = item.mail;
-      this.padrinoop.name = item.name;
-      this.padrinoop.phone = item.phone;
-      this.padrinoop.stratum = item.stratum;
-      this.padrinoop.surname = item.surname;
-      this.padrinoop.time_sponsoring = item.time_sponsoring;
-
       this.padrinoop.id = item.id;
+      this.padrinoop.date_joined = item.date_joined;
+      this.padrinoop.name = item.name;
+      this.padrinoop.surname = item.surname;
+      this.padrinoop.godfather_type = item.godfather_type;
+      this.padrinoop.gender = item.gender;
+      this.padrinoop.education_level = item.education_level;
+      this.padrinoop.phone = item.phone;
+      this.padrinoop.direction = item.direction;
+      this.padrinoop.city = item.city;
+      this.padrinoop.department = item.department;
+      this.padrinoop.mail = item.mail;
+      this.padrinoop.time_sponsoring = item.time_sponsoring;
+      this.padrinoop.stratum = item.stratum;
+      this.padrinoop.create_at = item.create_at;
 
-      this.padrinoop.estado = true;
       this.padrinoop.editar = true;
+      this.padrinoop.estado = true;
     },
     verPadrino(item) {
-      this.padrino.department = item.department;
-      this.padrino.ingreso = item.admission_date;
-      this.padrino.edad = item.age;
+      this.padrino.id = item.id;
+      this.padrino.date_joined = item.date_joined;
+      this.padrino.name = item.name;
+      this.padrino.surname = item.surname;
+      this.padrino.godfather_type = item.godfather_type;
+      this.padrino.gender = item.gender;
+      this.padrino.education_level = item.education_level;
+      this.padrino.phone = item.phone;
+      this.padrino.direction = item.direction;
       this.padrino.city = item.city;
-      this.padrino.historia_clinica = item.clinic_history;
-      this.padrino.direccion = item.direction;
-      this.padrino.educacion = item.education_level;
-      this.padrino.seguro = item.funeral_insurance;
-      this.padrino.genero = item.gender;
-      this.padrino.correo = item.mail;
-      this.padrino.nombre = item.name;
-      this.padrino.telefono = item.phone;
-      this.padrino.apellidos = item.surname;
+      this.padrino.department = item.department;
+      this.padrino.mail = item.mail;
+      this.padrino.time_sponsoring = item.time_sponsoring;
+      this.padrino.stratum = item.stratum;
+      this.padrino.create_at = item.create_at;
 
       this.padrino.estado = true;
     },

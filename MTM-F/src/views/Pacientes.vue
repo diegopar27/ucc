@@ -21,15 +21,23 @@
             <template v-slot:[`item.actions`]="{ item }">
               <v-icon small color="primary" class="mr-2" @click="verPaciente(item)"> mdi-book </v-icon>
               <v-icon small color="warning" class="mr-2" @click="editPaciente(item)"> mdi-pencil </v-icon>
+
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <v-icon small color="second" class="mr-2" v-bind="attrs" v-on="on" @click="asignarPaciente(item)"> mdi-account-group </v-icon>
+                </template>
+                <span>Asignar Padrino</span>
+              </v-tooltip>
             </template>
           </v-data-table>
         </template>
       </v-card>
     </v-row>
-    <PACIENTE :paciente="paciente"></PACIENTE>
+    <PACIENTE :paciente="paciente" v-if="paciente.estado"></PACIENTE>
     <PACIENTEOP :paciente="pacienteop" v-if="pacienteop.estado"></PACIENTEOP>
     <SUENOS :suenos="suenosop" v-if="suenosop.estado"></SUENOS>
     <CONDITION :condicion="conditionop" v-if="conditionop.estado"></CONDITION>
+    <ASIGNARPADRINO :asignar_padrino="asignar_padrino" v-if="asignar_padrino.estado"></ASIGNARPADRINO>
   </v-container>
 </template>
 <script>
@@ -37,6 +45,7 @@ import OpcionCondicion from "../components/pacientes/OpcionCondicion.vue";
 import popapPaciente from "../components/pacientes/CardPacientes.vue";
 import OpcionPaciente from "../components/pacientes/OpcionPaciente.vue";
 import OpcionSueños from "../components/pacientes/OpcionSueños.vue";
+import asignarPadrino from "../components/padrinos/AsignarPadrino.vue";
 import { mapActions } from "vuex";
 
 export default {
@@ -45,6 +54,7 @@ export default {
     PACIENTEOP: OpcionPaciente,
     SUENOS: OpcionSueños,
     CONDITION: OpcionCondicion,
+    ASIGNARPADRINO: asignarPadrino,
   },
   data: () => ({
     search: "",
@@ -60,12 +70,6 @@ export default {
         align: "center",
         sortable: false,
         value: "suernames",
-      },
-      {
-        text: "Edad",
-        align: "center",
-        sortable: false,
-        value: "age",
       },
       {
         text: "Email",
@@ -94,6 +98,9 @@ export default {
 
       { text: "Actions", value: "actions", sortable: false },
     ],
+    asignar_padrino: {
+      estado: false,
+    },
     paciente: {
       estado: false,
     },
@@ -115,6 +122,11 @@ export default {
     ...mapActions({
       _getPacientes: "pacientes/_getPacientes",
     }),
+    asignarPaciente(item) {
+      this.asignar_padrino.id = item.id;
+      this.asignar_padrino.names = item.names;
+      this.asignar_padrino.estado = true;
+    },
     editPaciente(item) {
       this.pacienteop = {
         admission_date: item.admission_date,
