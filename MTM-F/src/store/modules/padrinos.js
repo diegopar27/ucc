@@ -71,10 +71,10 @@ export default {
         console.error(error);
       }
     },
-    async _getPadrinoXPaciente({ commit }, { id }) {
+    async _getPadrinoXPaciente({ commit }, { id_patient }) {
       try {
         const RES = await postData({
-          url: `patientxgodfather/${id}/`,
+          url: `patientxgodfather/${id_patient}/`,
           header: {},
           method: "GET",
         });

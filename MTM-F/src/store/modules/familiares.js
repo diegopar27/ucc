@@ -20,7 +20,7 @@ export default {
     async _getFamiliar({ commit }, { id }) {
       try {
         const RES = await postData({
-          url: `family/${id}`,
+          url: `family/${id}/`,
           header: {},
           method: "GET",
         });

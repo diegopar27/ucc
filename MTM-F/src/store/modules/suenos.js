@@ -17,10 +17,10 @@ export default {
         console.error(error);
       }
     },
-    async _getSueno({ commit }, { id }) {
+    async _getSueno({ commit }, { patient }) {
       try {
         const RES = await postData({
-          url: `dream/${id}/`,
+          url: `dream/${patient}/`,
           header: {},
           method: "GET",
         });

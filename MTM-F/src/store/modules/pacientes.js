@@ -71,5 +71,18 @@ export default {
         console.error(error);
       }
     },
+    async _getPacientesXFamily({ commit }, { id_patient }) {
+      try {
+        const RES = await postData({
+          url: `patientxfamily/${id_patient}/`,
+          header: {},
+          method: "GET",
+        });
+        console.log("res", RES);
+        return RES;
+      } catch (error) {
+        console.error(error);
+      }
+    },
   },
 };

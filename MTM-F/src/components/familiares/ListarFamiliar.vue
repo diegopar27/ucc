@@ -96,12 +96,20 @@ export default {
     familiares: [],
   }),
   async mounted() {
-    this.familiares = await this._getFamiliares();
+    console.log(this.asignar_familia);
+    const id_patient = this.asignar_familia.id_paciente;
+    const familiar_x = await this._getPacientesXFamily({ id_patient });
+    console.log(familiar_x.id_family);
+    const id = familiar_x.id_family;
+    // this.familiares = await this._getFamiliares();
+    this.familiares.push(await this._getFamiliar({ id }));
     console.log(this.familiares);
   },
   methods: {
     ...mapActions({
+      _getFamiliar: "familiares/_getFamiliar",
       _getFamiliares: "familiares/_getFamiliares",
+      _getPacientesXFamily: "pacientes/_getPacientesXFamily",
     }),
     editFamiliar(item) {
       this.familiarop.names = item.names;

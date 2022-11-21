@@ -64,8 +64,8 @@ export default {
     padrinos: [],
   }),
   async mounted() {
-    const id = this.opcion_padrino.id_paciente;
-    let a = await this._getPadrinoXPaciente({ id });
+    const id_patient = this.opcion_padrino.id_paciente;
+    let a = await this._getPadrinoXPaciente({ id_patient });
 
     console.log("sssssssssssssssssssssssss",a);
     a.id_godfather.forEach(async (id, i) => {
