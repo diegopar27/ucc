@@ -55,6 +55,12 @@
               {{ paciente.education_level }}
             </h5>
           </v-col>
+          <v-col cols="4" class="my-0 py-1"><h3>Sueño</h3> </v-col>
+          <v-col cols="8" class="my-0 py-1">
+            <h5>
+              {{ suenos.name }}
+            </h5>
+          </v-col>
           <v-col cols="4" class="my-0 py-1"><h3>Dirección</h3> </v-col>
           <v-col cols="8" class="my-0 py-1">
             <h5>
@@ -79,7 +85,7 @@
 
 <script>
 import PADRINOS from "../padrinos/ComponentPadrinos.vue";
-import FAMILIAR from "../familiares/AsignarFamiliar.vue";
+import FAMILIAR from "../familiares/ListarFamiliar.vue";
 import EXAMEN from "../examenes/Examenes.vue";
 import { mapActions } from "vuex";
 import moment from "moment";
@@ -104,6 +110,7 @@ export default {
         estado: false,
       },
       eps: "",
+      suenos: "",
     };
   },
   computed: {
@@ -122,11 +129,13 @@ export default {
   async mounted() {
     const id = this.paciente.id;
     this.eps = await this._getEpsId({ id });
-    console.log("eps", this.eps);
+    this.suenos = await this._getSueno({ id });
+    console.log("eps", this.suenos);
   },
   methods: {
     ...mapActions({
       _getEpsId: "eps/_getEpsId",
+      _getSueno: "suenos/_getSueno",
     }),
     asignarFamiliar() {
       this.asignar_familia.estado = true;

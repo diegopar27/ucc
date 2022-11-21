@@ -20,7 +20,7 @@ export default {
     async _getSueno({ commit }, { id }) {
       try {
         const RES = await postData({
-          url: `dream/${id}`,
+          url: `dream/${id}/`,
           header: {},
           method: "GET",
         });
