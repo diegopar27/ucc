@@ -7,7 +7,7 @@ export default {
     async _getPatologia({ commit }, { id }) {
       try {
         const RES = await postData({
-          url: `Pathology/${id}`,
+          url: `Pathology/${id}/`,
           header: {},
           method: "GET",
         });
@@ -70,11 +70,11 @@ export default {
         console.error(error);
       }
     },
-    async _getPatologiaXPaciente({ commit }, { id }) {
+    async _getPatologiaXPaciente({ commit }, { id_patient }) {
       try {
-        console.log("este es el id", id);
+        console.log("este es el id", id_patient);
         const RES = await postData({
-          url: `Pathologyxpatient/${id}/`,
+          url: `Pathologyxpatient/${id_patient}/`,
           header: {},
           method: "GET",
         });

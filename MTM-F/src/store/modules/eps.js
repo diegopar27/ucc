@@ -17,10 +17,10 @@ export default {
         console.error(error);
       }
     },
-    async _getEpsId({ commit }, { patient }) {
+    async _getEpsId({ commit }, { id }) {
       try {
         const RES = await postData({
-          url: `eps/${patient}/`,
+          url: `eps/${id}/`,
           header: {},
           method: "GET",
         });
