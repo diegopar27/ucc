@@ -139,35 +139,6 @@
             <v-col cols="4" class="my-0 py-1">
               <v-text-field v-model="nui" dense :rules="rules" label="Nui" color="primary" id="suernames" type="number" required outlined />
             </v-col>
-
-            <v-col cols="3" class="my-0 py-1" v-if="paciente.editar">
-              <v-autocomplete
-                :items="items_familiares"
-                label="Asignar familiar"
-                item-text="surnames"
-                v-model="familiar"
-                color="primary"
-                item-value="id"
-                id="suernames"
-                type="text"
-                outlined
-                dense
-              />
-            </v-col>
-            <v-col cols="6" class="my-0 py-1" v-if="paciente.editar">
-              <v-autocomplete
-                label="Asignar padrino"
-                v-model="padrino"
-                :items="items_padrinos"
-                color="primary"
-                item-text="surname"
-                item-value="id"
-                id="suernames"
-                type="text"
-                outlined
-                dense
-              />
-            </v-col>
           </v-row>
         </v-form>
       </v-container>
@@ -255,7 +226,7 @@ export default {
   async mounted() {
     let fecha_actual = moment().locale("es");
     this.fecha_hoy = fecha_actual.format("DD-MM-YYYY");
-    console.log("Paciente", this.paciente);
+
     if (this.paciente.editar) {
       this.names = this.paciente.names;
       this.suernames = this.paciente.suernames;
